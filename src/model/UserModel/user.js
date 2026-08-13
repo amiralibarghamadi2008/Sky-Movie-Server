@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import MovieModel from "../MovieModel/movie";
 
 const UserSchema = new mongoose.Schema(
   {
@@ -20,12 +21,16 @@ const UserSchema = new mongoose.Schema(
       enum: ["ADMIN", "USER"],
       default: "USER",
     },
+    Bookmark: {
+      type: mongoose.Types.ObjectId,
+      ref: "movie",
+    },
   },
   {
     timestamps: true,
   },
 );
 
-const UserModel = mongoose.models.user || mongoose.model("user" , UserSchema)
+const UserModel = mongoose.models.user || mongoose.model("user", UserSchema);
 
-export default UserModel
+export default UserModel;
