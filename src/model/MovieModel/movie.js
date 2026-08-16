@@ -33,10 +33,6 @@ const MovieSchema = new mongoose.Schema(
       enum: ["اکشن","کمدی","درام","ترسناک","علمی تخیلی","عاشقانه","هیجان انگیز","انیمیشن","مستند","جنایی","فانتزی","ماجراجویی","معمایی"],
       required: [true, "ژانر فیلم الزامی هست"],
     },
-    userBookMark: {
-      type : mongoose.Schema.Types.ObjectId,
-      ref : user,
-    },
     director: {
       type: String,
       trim: true,

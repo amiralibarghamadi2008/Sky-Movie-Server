@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import MovieModel from "../MovieModel/movie";
 
 const UserSchema = new mongoose.Schema(
   {
@@ -9,7 +8,7 @@ const UserSchema = new mongoose.Schema(
       required: true,
       maxLength: 30,
     },
-    phonNumber: {
+    phoneNumber: {
       type: String,
       trim: true,
       required: true,
@@ -21,10 +20,18 @@ const UserSchema = new mongoose.Schema(
       enum: ["ADMIN", "USER"],
       default: "USER",
     },
-    bookmark: {
-      type: mongoose.Types.ObjectId,
-      ref: "movie",
-    },
+    movieBookmark: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "movie",
+      }
+    ],
+    seriesBookmark: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "series",
+      }
+    ],
     Avatar: {
       type : String,
       default : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdAjNHd25BO0RAud02eMZOYCqdIck_4GQCJ65QuVq5Yzu-Su7yGQmctGhF&s=10"
