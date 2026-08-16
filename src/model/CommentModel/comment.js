@@ -15,6 +15,10 @@ const CommentSchema = new mongoose.Schema(
             type : mongoose.Types.ObjectId,
             ref : "movie"
         },
+        series : {
+            type : mongoose.Types.ObjectId,
+            ref : "series"
+        },
     }
 )
 

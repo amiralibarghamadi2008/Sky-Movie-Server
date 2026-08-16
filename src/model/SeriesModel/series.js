@@ -65,6 +65,12 @@ SeriesSchema.virtual("episodes" , {
     foreignField: "series",
 })
 
+SeriesSchema.virtual("seriesComments" , {
+    ref : "comment",
+    localField : "_id",
+    foreignField: "series",
+})
+
 const SeriesModel = mongoose.models.series || mongoose.model("series" , SeriesSchema)
 
 export default SeriesModel

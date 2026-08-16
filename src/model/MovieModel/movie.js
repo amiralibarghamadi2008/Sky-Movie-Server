@@ -33,6 +33,10 @@ const MovieSchema = new mongoose.Schema(
       enum: ["اکشن","کمدی","درام","ترسناک","علمی تخیلی","عاشقانه","هیجان انگیز","انیمیشن","مستند","جنایی","فانتزی","ماجراجویی","معمایی"],
       required: [true, "ژانر فیلم الزامی هست"],
     },
+    duration : {
+      type : String,
+      required: true,
+    },
     director: {
       type: String,
       trim: true,
@@ -50,7 +54,7 @@ const MovieSchema = new mongoose.Schema(
   },
 );
 
-MovieSchema.virtual("comments", {
+MovieSchema.virtual("movieComments", {
   ref: "comment",
   localField: "_id",
   foreignField: "movie",
