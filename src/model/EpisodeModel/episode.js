@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const EpisodeSchema = new mongoose.Schema(
     {
-        title : {
+        titleEpisode : {
            type : String,
             required: true,
             trim : true

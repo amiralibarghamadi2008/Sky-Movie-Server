@@ -8,16 +8,20 @@ const CommentSchema = new mongoose.Schema(
             maxLength: 100,
         },
         user : {
-            type : mongoose.Types.ObjectId,
+            type : mongoose.Schema.Types.ObjectId,
             ref : "user"
         },
         movie : {
-            type : mongoose.Types.ObjectId,
+            type : mongoose.Schema.Types.ObjectId,
             ref : "movie"
         },
         series : {
-            type : mongoose.Types.ObjectId,
+            type : mongoose.Schema.Types.ObjectId,
             ref : "series"
+        },
+        article : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "article"
         },
     }
 )
