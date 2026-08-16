@@ -21,10 +21,14 @@ const UserSchema = new mongoose.Schema(
       enum: ["ADMIN", "USER"],
       default: "USER",
     },
-    Bookmark: {
+    bookmark: {
       type: mongoose.Types.ObjectId,
       ref: "movie",
     },
+    Avatar: {
+      type : String,
+      default : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdAjNHd25BO0RAud02eMZOYCqdIck_4GQCJ65QuVq5Yzu-Su7yGQmctGhF&s=10"
+    }
   },
   {
     timestamps: true,
