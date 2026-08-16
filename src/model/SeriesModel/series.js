@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const SeriesSchema = new mongoose.Schema(
     {
-        titelSeries: {
+        titleSeries: {
           type: String,
           trim: true,
           required: true,
@@ -22,7 +22,7 @@ const SeriesSchema = new mongoose.Schema(
           required: true,
           maxLength: 25,
         },
-        longtDes: {
+        longDes: {
           type: String,
           trim: true,
           required: true,
@@ -53,9 +53,17 @@ const SeriesSchema = new mongoose.Schema(
         }
     },
     {
-        timestamps : true
+        timestamps : true,
+        toJSON : {virtuals : true},
+        toObject : {virtuals : true},
     }
 )
+
+SeriesSchema.virtual("episodes" , {
+    ref : "episode",
+    localField : "_id",
+    foreignField: "series",
+})
 
 const SeriesModel = mongoose.models.series || mongoose.model("series" , SeriesSchema)
 

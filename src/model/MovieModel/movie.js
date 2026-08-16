@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const MovieSchema = new mongoose.Schema(
   {
-    titelMovie: {
+    titleMovie: {
       type: String,
       trim: true,
       required: true,
@@ -22,7 +22,7 @@ const MovieSchema = new mongoose.Schema(
       required: true,
       maxLength: 25,
     },
-    longtDes: {
+    longDes: {
       type: String,
       trim: true,
       required: true,
