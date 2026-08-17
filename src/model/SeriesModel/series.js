@@ -20,13 +20,13 @@ const SeriesSchema = new mongoose.Schema(
           type: String,
           trim: true,
           required: true,
-          maxLength: 25,
+          maxLength: 100,
         },
         longDes: {
-          type: String,
+          type: [ String ],
           trim: true,
           required: true,
-          maxLength: 300,
+          maxLength: 1000,
         },
         genres: {
           type: String,
