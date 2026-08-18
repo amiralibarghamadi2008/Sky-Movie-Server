@@ -9,6 +9,15 @@ const OtpSchema = new mongoose.Schema(
       unique: true,
       match: /09[0-9]{9}$/,
     },
+    otpCode: {
+      type: String,
+      required : true,
+    },
+    createdAt : {
+      type: String,
+      default : Date.now,
+      expires : 120
+    }
   },
   {
     timestamps: true,
