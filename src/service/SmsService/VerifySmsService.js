@@ -1,8 +1,8 @@
 import { GetOtpCode } from "../../repository/OtpRepository/OtpRepository.js";
 
-export default async function Ve(params) {
+export default async function Verify_Service(userQeury) {
   try {
-    const { phoneNumber, userCode } = verifyData;
+    const { phoneNumber, userCode } = userQeury;
 
     const otpRecord = await GetOtpCode(phoneNumber);
 
