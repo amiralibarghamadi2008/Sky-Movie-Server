@@ -1,4 +1,4 @@
-import { GetOtpCode } from "../../repository/OtpRepository/OtpRepository.js";
+import { GetOtpCode } from "../../../repository/OtpRepository/OtpRepository.js";
 
 export default async function Verify_Service(userQeury) {
   try {

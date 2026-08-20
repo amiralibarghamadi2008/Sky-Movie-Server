@@ -1,5 +1,5 @@
-import sendSMSWithPattern from "../../utils/ConnectToSmsPanel/ConnectToSmsPanel.js";
-import { SendOtp } from "../../repository/OtpRepository/OtpRepository.js"
+import sendSMSWithPattern from "../../../utils/ConnectToSmsPanel/ConnectToSmsPanel.js";
+import { SendOtp } from "../../../repository/OtpRepository/OtpRepository.js"
 import crypto from "node:crypto";
 
 export default async function SmsServices(userData) {
