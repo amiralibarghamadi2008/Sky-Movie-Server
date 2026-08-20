@@ -1,18 +1,16 @@
 import sendSMSWithPattern from "../../utils/ConnectToSmsPanel/ConnectToSmsPanel.js";
-import { SendOtpCode } from "../../repository/OtpRepository/OtpRepository.js";
+import { SendOtp } from "../../repository/OtpRepository/OtpRepository.js"
+import crypto from "node:crypto";
 
 export default async function SmsServices(userData) {
   try {
     const { phoneNumber } = userData;
 
-    const generatedCode = Math.floor(10000 + Math.random() * 90000).toString();
-    console.log(generatedCode);
+    const generatedCode = crypto.randomInt(10000, 100000).toString();
 
     const recId = await sendSMSWithPattern(phoneNumber, generatedCode);
 
-    console.log(generatedCode);
-
-    await saveOTP(phoneNumber, generatedCode);
+    await SendOtp(phoneNumber, generatedCode);
   } catch (err) {
     throw err;
   }
