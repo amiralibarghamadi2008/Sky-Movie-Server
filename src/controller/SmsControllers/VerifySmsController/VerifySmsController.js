@@ -1,4 +1,4 @@
-import Verify_Service from "../../services/SMS_Services/Verify_Services.js";
+import Verify_Service from "../../../service/SmsService/VerifySmsService/VerifySmsService.js";
 
 export default async function Verify_Controllers(req, res) {
   try {
