@@ -1,7 +1,9 @@
-import jwt from "jsonwebtoken"
 import "dotenv/config"
+import jwt from "jsonwebtoken"
+import crypto from "crypto";
 
-export default async function RefreshToken(res , userData) {
+
+export default function RefreshToken(res , userData) {
     try {
         const refreshToken = jwt.sign(
             {userId : userData._id ,firstName : userData.firstName ,userRole : userData.role ,jti : crypto.randomUUID()},
