@@ -26,7 +26,7 @@ export default async function SignInService(userData) {
             const accessToken = AccessToken(user)
             const refreshToken = RefreshToken(user)
             const deleteOtp = await DeleteOtp(isCurectOtp._id)
-            return {accessToken , refreshToken , deleteOtp}
+            return {accessToken , refreshToken , deleteOtp , user , isNewUser}
         }
     }catch (err) {
         throw err
