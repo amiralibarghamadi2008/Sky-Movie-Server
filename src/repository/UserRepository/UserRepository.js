@@ -43,7 +43,7 @@ export async function DeleteUser (userId) {
 
 export async function UpdateUser (userId , userData) {
     try{
-        return await Delete(UserModel , userId , userData)
+        return await Update(UserModel , userId , userData)
     }catch (err) {
         throw err
     }
