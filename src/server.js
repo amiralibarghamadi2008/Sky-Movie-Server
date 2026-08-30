@@ -2,7 +2,7 @@
 import "dotenv/config"
 import express from "express"
 import SmsRoutes from "./routes/SmsRoute/route.js"
-import SignIn from "./routes/SignInRoute/route.js"
+import SignIn from "./routes/AuthRoute/route.js"
 
 // confing and middleware
 const app = express()

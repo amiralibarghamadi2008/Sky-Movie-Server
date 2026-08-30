@@ -1,6 +1,6 @@
-import ClearAccessTokenCookie from "../../utils/Cookies/ClearCookies/AccessTokenCookie/accessTokenCookie.js";
-import ClearRefreshTokenCookie from "../../utils/Cookies/ClearCookies/RefreshTokenCookie/refreshTokenCookie.js";
-import SignOutService from "../../service/SignOutService/signOutService.js";
+import ClearAccessTokenCookie from "../../../utils/Cookies/ClearCookies/AccessTokenCookie/accessTokenCookie.js";
+import ClearRefreshTokenCookie from "../../../utils/Cookies/ClearCookies/RefreshTokenCookie/refreshTokenCookie.js";
+import SignOutService from "../../../service/AuthService/SignOutService/signOutService.js";
 
 export default async function signOutController(req, res) {
   try {

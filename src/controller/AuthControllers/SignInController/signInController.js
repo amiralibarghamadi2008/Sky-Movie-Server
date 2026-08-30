@@ -1,7 +1,7 @@
 import "dotenv/config"
-import SignInService from "../../service/SignInService/signInService.js";
-import AccessTokenCookie from "../../utils/Cookies/SetCookies/AccessTokenCookie/accessTokenCookie.js";
-import RefreshTokenCookie from "../../utils/Cookies/SetCookies/RefreshTokenCookie/refreshTokenCookie.js";
+import SignInService from "../../../service/AuthService/SignInService/signInService.js";
+import AccessTokenCookie from "../../../utils/Cookies/SetCookies/AccessTokenCookie/accessTokenCookie.js";
+import RefreshTokenCookie from "../../../utils/Cookies/SetCookies/RefreshTokenCookie/refreshTokenCookie.js";
 
 export default async function SignInController(req, res) {
   try {
