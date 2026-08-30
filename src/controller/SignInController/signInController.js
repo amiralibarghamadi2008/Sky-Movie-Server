@@ -19,10 +19,10 @@ export default async function SignInController(req, res) {
         }
     })
   } catch (error) {
-    console.error("خطا در وریفای کد", error.message);
-    return res.status(400).json({
+    console.error(error.message);
+    return res.status(500).json({
       success: false,
-      message: error.message || "خطا در تایید کد.",
+      message: error.message || "خطای سرور",
     });
   }
 }
