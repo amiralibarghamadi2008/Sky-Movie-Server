@@ -51,6 +51,8 @@ const EpisodeSchema = new mongoose.Schema(
   },
 );
 
+EpisodeSchema.index({ series: 1, seasonNumber: 1, episodeNumber: 1 }, { unique: true });
+
 const EpisodeModel =
   mongoose.models.episode || mongoose.model("episode", EpisodeSchema);
 
