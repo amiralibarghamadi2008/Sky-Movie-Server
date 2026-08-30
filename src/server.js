@@ -3,10 +3,30 @@ import "dotenv/config"
 import express from "express"
 import SmsRoutes from "./routes/SmsRoute/route.js"
 import SignIn from "./routes/AuthRoute/route.js"
+import helmet from "helmet"
+import cors from "cors"
 
 // confing and middleware
 const app = express()
+
 app.use(express.json())
+
+app.set('trust proxy', 1);
+
+app.use(cookieParser())
+
+app.use(helmet())
+
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  }),
+);
+
+app.use(hpp());
+
+
 
 // route's
 app.use("/api" , SmsRoutes)
