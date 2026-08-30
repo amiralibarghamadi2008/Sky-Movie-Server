@@ -1,6 +1,7 @@
 // file and middleware
 import "dotenv/config"
 import express from "express"
+import GlobalLimiter from "./middleware/RateLimit/GlobalLimiter/globalLimiter.js"
 import SmsRoutes from "./routes/SmsRoute/route.js"
 import SignIn from "./routes/AuthRoute/route.js"
 import helmet from "helmet"
@@ -12,6 +13,8 @@ const app = express()
 app.use(express.json())
 
 app.set('trust proxy', 1);
+
+app.use(GlobalLimiter)
 
 app.use(cookieParser())
 

@@ -6,7 +6,7 @@ const authLimiter = rateLimit({
   message: {
     success: false,
     message:
-      "تعداد درخواست‌های شما بیش از حد مجاز است. لطفاً ۲ دقیقه دیگر تلاش کنید.",
+      "تعداد درخواست‌های شما بیش از حد مجاز است. لطفاً 2 دقیقه دیگر تلاش کنید.",
   },
   standardHeaders: true, 
   legacyHeaders: false, 
