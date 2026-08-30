@@ -7,15 +7,17 @@ import SmsRoutes from "./routes/SmsRoute/route.js"
 import SignIn from "./routes/AuthRoute/route.js"
 import helmet from "helmet"
 import cors from "cors"
+import hpp from "hpp"
+import cookieParser from "cookie-parser"
 
 // confing and middleware
 const app = express()
 
-app.use(express.json())
-
 app.set('trust proxy', 1);
 
-app.use(ConnectToDBMiddleware())
+app.use(express.json())
+
+app.use(ConnectToDBMiddleware)
 
 app.use(GlobalLimiter)
 

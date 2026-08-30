@@ -1,5 +1,24 @@
 import mongoose from "mongoose";
 
+const DownloadLinkSchema = new mongoose.Schema (
+  {
+    quality : {
+      type : String,
+      required : true,
+      trim : true
+    },
+    fileSize : {
+      type : String,
+      trim : true
+    },
+    directDownloadLink : {
+      type : String,
+      required : true,
+      trim : true
+    },
+  }
+)  
+
 const MovieSchema = new mongoose.Schema(
   {
     titleMovie: {
@@ -45,7 +64,11 @@ const MovieSchema = new mongoose.Schema(
     IMDbRating: {
       type : Number,
       required: true,
-    }
+    },
+    downloadLinks: {
+      type : [ DownloadLinkSchema ],
+      required: true,
+    },
   },
   {
     timestamps: true,
