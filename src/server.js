@@ -1,6 +1,7 @@
 // file and middleware
 import "dotenv/config"
 import express from "express"
+import ConnectToDBMiddleware from "./middleware/ConnectToDB/connectToDB.js"
 import GlobalLimiter from "./middleware/RateLimit/GlobalLimiter/globalLimiter.js"
 import SmsRoutes from "./routes/SmsRoute/route.js"
 import SignIn from "./routes/AuthRoute/route.js"
@@ -13,6 +14,8 @@ const app = express()
 app.use(express.json())
 
 app.set('trust proxy', 1);
+
+app.use(ConnectToDBMiddleware())
 
 app.use(GlobalLimiter)
 
