@@ -2,7 +2,7 @@ import ConnectToDB from "../../config/db/db.js";
 
 export default async function ConnectToDBMiddleware(req, res, next) {
   try {
-    await ConnectToDataBace();
+    await ConnectToDB();
 
     next();
   } catch (error) {
