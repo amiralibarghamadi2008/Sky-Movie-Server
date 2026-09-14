@@ -30,6 +30,7 @@
     "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.9.1",
+    "multer": "^2.4.0",
     "nodemon": "^3.1.14",
     "pino": "^10.3.1",
     "pino-pretty": "^13.1.3",
