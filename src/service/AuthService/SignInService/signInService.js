@@ -1,7 +1,7 @@
 import { GetOtpCode , DeleteOtp } from "../../../repository/OtpRepository/OtpRepository.js";
 import {FindAllUser, FindUserByPhone, CreateUser} from "../../../repository/UserRepository/UserRepository.js"
-import AccessToken from "../../../utils/Tokens/AccessToken/accessToken.js";
-import RefreshToken from "../../../utils/Tokens/RefreshToken/refreshToken.js"
+import AccessToken from "../../../utils/tokens/AccessToken/accessToken.js";
+import RefreshToken from "../../../utils/tokens/RefreshToken/refreshToken.js"
 
 export default async function SignInService(userData) {
     try {
