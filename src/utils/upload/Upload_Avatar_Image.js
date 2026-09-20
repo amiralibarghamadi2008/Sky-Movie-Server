@@ -28,11 +28,11 @@ const fileFilter = function (req , file , callback) {
     callback (null, acceptFile)
 }
 
-const field = [{
+const AvatarField = [{
     name:  "Avatar",
     maxCount : 1
 }]
 
-const upload = multer({storage , fileFilter}) 
+const uploadAvatarImg = multer({storage , fileFilter}) 
 
-export  {upload , field}
+export  {uploadAvatarImg , AvatarField}
