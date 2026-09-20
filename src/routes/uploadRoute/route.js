@@ -1,11 +1,13 @@
 import express from "express";
 
-import {uploadAvatarImg , AvatarField} from "../../utils/upload/Upload_Avatar_Image.js";
+import UploadImage from "../../utils/upload/upload.js";
 
-const route = express.Router()
+const route = express.Router();
 
-route.post("/uploader" , uploadAvatarImg.fields(AvatarField) , (req , res) => {
-    return res.status(200).json("عکس آواتار با موفقیت آپلود شد")
-})
+const { UploadImg, Fields, ErrorHandel} = UploadImage("./src/public/img");
 
-export default route
+route.post("/uploader", UploadImg.fields(Fields), (req, res) => {
+    ErrorHandel(req , res)
+});
+
+export default route;

@@ -44,3 +44,6 @@ coverage/
 # Cache directories
 .cache/
 .eslintcache
+
+.prettierrc
+.prettierignore
