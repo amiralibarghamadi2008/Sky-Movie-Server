@@ -4,9 +4,9 @@ import UploadImage from "../../utils/upload/upload.js";
 
 const route = express.Router();
 
-const { UploadImg, Fields, ErrorHandel} = UploadImage("./src/public/img");
+const { ErrorHandel } = UploadImage("./src/public/image");
 
-route.post("/uploader", UploadImg.fields(Fields), (req, res) => {
+route.post("/uploader", (req, res) => {
     ErrorHandel(req , res)
 });
 

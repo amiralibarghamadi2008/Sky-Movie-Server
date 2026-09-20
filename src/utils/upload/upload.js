@@ -4,19 +4,7 @@ import path from "path";
 
 export default function UploadImage(image) {
   try {
-    const storage = multer.diskStorage({
-      destination: function (req, file, callback) {
-        const directoryName = image;
-
-        if (!fs.existsSync(directoryName)) {
-          fs.mkdirSync(directoryName, { recursive: true });
-        }
-        callback(null, directoryName);
-      },
-      filename: function (req, file, callback) {
-        callback(null, Date.now() + "_" + path.extname(file.originalname));
-      },
-    });
+    const storage = multer.memoryStorage();
 
     const fileFilter = function (req, file, callback) {
       let acceptFile = false;
@@ -84,6 +72,22 @@ export default function UploadImage(image) {
           });
         }
 
+        if (!fs.existsSync(image)) {
+          fs.mkdirSync(image, { recursive: true });
+        }
+
+        Object.values(req.files).forEach((fileList) => {
+          fileList.forEach((file) => {
+            const baseName = path.parse(file.originalname).name;
+
+            const ext = path.extname(file.originalname);
+
+            const uniqueFilename = `${baseName}_${Date.now()}_${ext}`;
+
+            fs.writeFileSync(image + "/" + uniqueFilename, file.buffer);
+          });
+        });
+
         return res.status(200).json({
           success: true,
           message: "آپلود با موفقیت انجام شد",
@@ -98,7 +102,7 @@ export default function UploadImage(image) {
       limits: { fileSize: 5 * 1024 * 1024 },
     });
 
-    return { UploadImg, Fields, ErrorHandel };
+    return { ErrorHandel };
   } catch (error) {
     throw new Error(error.message);
   }
