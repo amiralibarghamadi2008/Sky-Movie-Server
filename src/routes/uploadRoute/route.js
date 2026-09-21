@@ -6,8 +6,6 @@ const route = express.Router();
 
 const { ErrorHandel } = UploadImage("./src/public/image");
 
-route.post("/uploader", (req, res) => {
-    ErrorHandel(req , res)
-});
+route.post("/uploader", ErrorHandel);
 
 export default route;
