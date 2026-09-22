@@ -77,43 +77,50 @@ export default function UploadImage(image) {
     const ErrorHandel = function (req, res) {
       const uploadMiddleware = UploadImg.fields(Fields);
 
-      uploadMiddleware(req, res, async function (error) {
-        if (error) {
-          return res.status(400).json({
-            success: false,
-            message: `آپلود عکس با خطا مواجه شد: ${error}`,
-          });
-        }
-
-        const uploadedFiles = [];
-
-        for (const fileList of Object.values(req.files)) {
-          for (const file of fileList) {
-            const params = {
-              Bucket: process.env.PARSPACK_BUCKET_NAME,
-              Key: file.originalname,
-              Body: file.buffer,
-              ContentType: file.mimetype,
-            };
-
-            const command = new PutObjectCommand(params);
-
-            await S3.send(command);
-
-            uploadedFiles.push({
-              fieldname: file.fieldname,
-              key: file.originalname,
-              url: `${process.env.PARSPACK_ENDPOINT}/${file.originalname}`,
+      try {
+        uploadMiddleware(req, res, async function (error) {
+          if (error) {
+            return res.status(400).json({
+              success: false,
+              message: `آپلود عکس با خطا مواجه شد: ${error}`,
             });
           }
-        }
 
-        return res.status(200).json({
-          success: true,
-          message: "آپلود با موفقیت انجام شد",
-          files: req.files,
+          const uploadedFiles = [];
+
+          for (const fileList of Object.values(req.files)) {
+            for (const file of fileList) {
+              const params = {
+                Bucket: process.env.PARSPACK_BUCKET_NAME,
+                Key: file.originalname,
+                Body: file.buffer,
+                ContentType: file.mimetype,
+              };
+
+              const command = new PutObjectCommand(params);
+
+              await S3.send(command);
+
+              uploadedFiles.push({
+                fieldname: file.fieldname,
+                key: file.originalname,
+                url: `${process.env.PARSPACK_ENDPOINT}/${file.originalname}`,
+              });
+            }
+          }
+
+          return res.status(200).json({
+            success: true,
+            message: "آپلود با موفقیت انجام شد",
+            files: req.files,
+          });
         });
-      });
+      } catch (error) {
+        return res.status(500).json({
+          success: false,
+          message: `خطا لطفا اگر از IP ایران استفاده نمی کنید برای آپلود عکس به IP ایران برگردین: ${cloudError.message}`,
+        });
+      }
     };
 
     return { ErrorHandel };
