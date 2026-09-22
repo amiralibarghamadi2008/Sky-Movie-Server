@@ -1,6 +1,13 @@
+// multer
 import multer from "multer";
 import fs from "fs";
 import path from "path";
+
+// cloud storage
+import createS3Client from "../s3/s3.js";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+
+const S3 = createS3Client();
 
 export default function UploadImage(image) {
   try {
@@ -61,10 +68,16 @@ export default function UploadImage(image) {
       },
     ];
 
+    const UploadImg = multer({
+      storage,
+      fileFilter,
+      limits: { fileSize: 5 * 1024 * 1024 },
+    });
+
     const ErrorHandel = function (req, res) {
       const uploadMiddleware = UploadImg.fields(Fields);
 
-      uploadMiddleware(req, res, function (error) {
+      uploadMiddleware(req, res, async function (error) {
         if (error) {
           return res.status(400).json({
             success: false,
@@ -72,21 +85,22 @@ export default function UploadImage(image) {
           });
         }
 
-        if (!fs.existsSync(image)) {
-          fs.mkdirSync(image, { recursive: true });
+        for (const fileList of Object.values(req.files)) {
+          for (const file of fileList) {
+
+            const params = {
+              Bucket: process.env.PARSPACK_BUCKET_NAME,
+              Key: file.originalname,
+              Body: file.buffer,
+              ContentType: file.mimetype,
+            };
+
+            const command = new PutObjectCommand(params);
+
+            await S3.send(command);
+            
+          }
         }
-
-        Object.values(req.files).forEach((fileList) => {
-          fileList.forEach((file) => {
-            const baseName = path.parse(file.originalname).name;
-
-            const ext = path.extname(file.originalname);
-
-            const uniqueFilename = `${baseName}_${Date.now()}_${ext}`;
-
-            fs.writeFileSync(image + "/" + uniqueFilename, file.buffer);
-          });
-        });
 
         return res.status(200).json({
           success: true,
@@ -95,12 +109,6 @@ export default function UploadImage(image) {
         });
       });
     };
-
-    const UploadImg = multer({
-      storage,
-      fileFilter,
-      limits: { fileSize: 5 * 1024 * 1024 },
-    });
 
     return { ErrorHandel };
   } catch (error) {

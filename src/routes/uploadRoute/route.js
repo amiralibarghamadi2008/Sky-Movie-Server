@@ -1,6 +1,6 @@
 import express from "express";
 
-import UploadImage from "../../utils/upload/upload.js";
+import UploadImage from "../../utils/upload/multer/upload.js";
 
 const route = express.Router();
 
