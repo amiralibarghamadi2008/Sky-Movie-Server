@@ -85,9 +85,10 @@ export default function UploadImage(image) {
           });
         }
 
+        const uploadedFiles = [];
+
         for (const fileList of Object.values(req.files)) {
           for (const file of fileList) {
-
             const params = {
               Bucket: process.env.PARSPACK_BUCKET_NAME,
               Key: file.originalname,
@@ -98,7 +99,12 @@ export default function UploadImage(image) {
             const command = new PutObjectCommand(params);
 
             await S3.send(command);
-            
+
+            uploadedFiles.push({
+              fieldname: file.fieldname,
+              key: file.originalname,
+              url: `${process.env.PARSPACK_ENDPOINT}/${file.originalname}`,
+            });
           }
         }
 
