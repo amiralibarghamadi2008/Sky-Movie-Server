@@ -1,11 +1,11 @@
 import express from "express";
 
-import {upload , field} from "../../utils/upload/Upload_Avatar_Image.js";
+import UploadImage from "../../utils/upload/multer/upload.js";
 
-const route = express.Router()
+const route = express.Router();
 
-route.post("/uploader" , upload.fields(field) , (req , res) => {
-    return res.status(200).json("عکس آواتار با موفقیت آپلود شد")
-})
+const { ErrorHandel } = UploadImage();
 
-export default route
+route.post("/uploader", ErrorHandel);
+
+export default route;
