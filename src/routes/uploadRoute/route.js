@@ -4,7 +4,7 @@ import UploadImage from "../../utils/upload/multer/upload.js";
 
 const route = express.Router();
 
-const { ErrorHandel } = UploadImage("./src/public/image");
+const { ErrorHandel } = UploadImage();
 
 route.post("/uploader", ErrorHandel);
 

@@ -12,13 +12,7 @@ export default function createS3Client() {
       },
       forcePathStyle: true, 
     });
-
-    console.log("CHECK KEYS:", {
-      endpoint: process.env.PARSPACK_ENDPOINT,
-      accessKey: process.env.PARSPACK_ACCESS_KEY,
-      bucket: process.env.PARSPACK_BUCKET_NAME,
-    });
-
+    
     return S3;
   } catch (error) {
     throw error;

@@ -1,15 +1,14 @@
 // multer
 import multer from "multer";
-import fs from "fs";
-import path from "path";
 
 // cloud storage
 import createS3Client from "../s3/s3.js";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 
+// use a S3 const
 const S3 = createS3Client();
 
-export default function UploadImage(image) {
+export default function UploadImage() {
   try {
     const storage = multer.memoryStorage();
 
