@@ -10,6 +10,8 @@ export default async function AccessToken(res , userData) {
             process.env.Access_Token_Security_Code,
             {expiresIn : "10m"}
         )
+
+        return accessToken
     }catch(err){
         throw new Error(`${err.message}`)
     }

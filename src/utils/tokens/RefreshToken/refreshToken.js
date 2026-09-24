@@ -10,6 +10,8 @@ export default function RefreshToken(res , userData) {
             process.env.Access_Token_Security_Code,
             {expiresIn : "20d"}
         )
+
+        return refreshToken
     }catch (err) {
         throw new Error(`خطای رفرش توکن : ${err}`)
     }
