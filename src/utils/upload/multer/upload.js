@@ -1,3 +1,6 @@
+// .env file
+import "dotenv/config"
+
 // multer
 import multer from "multer";
 
