@@ -1,6 +1,6 @@
 import VerifyAccessToken from "../../../utils/tokens/VerifyAccessToken/verifyAccessToken.js";
 
-export default function LoginOnly(req, res, next) {
+export default function GuestOnly(req, res, next) {
     try{
         const token = req.cookies?.accessToken
 
