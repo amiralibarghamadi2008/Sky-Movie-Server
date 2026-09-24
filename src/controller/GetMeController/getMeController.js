@@ -4,7 +4,7 @@ export default async function GetMeController(req, res) {
   try {
     const userId = req.user.id;
 
-    const userData = await GetMeController(userId);
+    const userData = await GetMeService(userId);
 
     if (userData) {
       return res.status(200).json({
