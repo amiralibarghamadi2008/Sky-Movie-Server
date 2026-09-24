@@ -1,4 +1,4 @@
-import { FindOneUser } from "../../repository/UserRepository/UserRepository";
+import { FindOneUser } from "../../repository/UserRepository/UserRepository.js";
 
 export default async function GetMeService(userId) {
     try {
