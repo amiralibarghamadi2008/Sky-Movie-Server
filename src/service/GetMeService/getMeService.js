@@ -1,6 +1,6 @@
 import { FindOneUser } from "../../repository/UserRepository/UserRepository";
 
-export default async function GetMe(userId) {
+export default async function GetMeService(userId) {
     try {
         const user = await FindOneUser(userId)
 
