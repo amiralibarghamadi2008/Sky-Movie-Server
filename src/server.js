@@ -17,7 +17,6 @@ import cookieParser from "cookie-parser"
 
 import SmsRoutes from "./routes/SmsRoute/route.js"
 import SignInRoute from "./routes/AuthRoute/route.js"
-import UploadRoute from "./routes/uploadRoute/route.js";
 import MovieRoute from "./routes/MovieRoute/route.js"
 
 const app = express()
@@ -52,8 +51,6 @@ app.get("/" , (req , res) => {
 app.use("/api" , SmsRoutes)
 
 app.use("/api" , SignInRoute)
-
-app.use("/api" , UploadRoute)
 
 app.use("/api" , MovieRoute)
 

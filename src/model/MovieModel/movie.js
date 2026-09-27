@@ -89,7 +89,7 @@ MovieSchema.virtual("movieComments", {
   foreignField: "movie",
 });
 
-MovieSchema.index({ titleMovie: 1, releaseYear: 1 }, { unique: true });
+MovieSchema.index({ titleMovie: 1, slug: 1 }, { unique: true });
 
 MovieSchema.index({ genres: 1 });
 
