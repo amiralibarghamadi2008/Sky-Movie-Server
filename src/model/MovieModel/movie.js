@@ -27,6 +27,12 @@ const MovieSchema = new mongoose.Schema(
       required: true,
       maxLength: 30,
     },
+    slug: {
+      type: String,
+      trim: true,
+      required: true,
+      maxLength: 35,
+    },
     mainImage: {
       type: String,
       required: [true, "تصویر اصلی محصول الزامی است"],
