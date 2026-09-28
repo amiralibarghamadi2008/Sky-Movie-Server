@@ -1,8 +1,8 @@
-import { Delete } from "../../../repository/BaceRepository/BaceRepository.js";
+import { DeleteSeries } from "../../../repository/SeriesRepository/seriesRepository.js";
 
 export default async function Delete_Series_Service(seriesId) {
   try {
-    const deleteSeries = await Delete(seriesId)
+    const deleteSeries = await DeleteSeries(seriesId)
 
     return {success : true , deleteSeries}
   } catch (error) {
