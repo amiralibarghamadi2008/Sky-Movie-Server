@@ -4,7 +4,7 @@ export default async function GetOne_Movie_Controller(req, res) {
   try {
     const queryParams = req.params.slug;
 
-    const getOneMovie = await GetOne_Movie_Service(queryParams);
+    const getOneMovie = await GetOne_Movie_Service({ slug: queryParams });
 
     if (!getOneMovie) {
       return res.status(404).json("این فیلم وجود ندارد");
