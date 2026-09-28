@@ -1,12 +1,12 @@
 import Create_Episode_Service from "../../../service/EpisodeService/Create_Episode_Service/create_Episode_Service.js";
 
-export default async function Create_Series_Controllers(req, res) {
+export default async function Create_Episode_Controllers(req, res) {
   try {
-    const { titleSeries, mainImage, images, shortDes, longDes, genres, director, status, network, IMDbRating } = req.body;
+    const { titleEpisode, seasonNumber, episodeNumber, duration, series, downloadLinks } = req.body;
+    
+    const createEpisode = await Create_Episode_Service( { titleEpisode, seasonNumber, episodeNumber, duration, series, downloadLinks } ,req.user);
 
-    const createSeries = await Create_Episode_Service({ titleSeries, mainImage, images, shortDes, longDes, genres, director, status, network, IMDbRating } , req.user)
-
-    return res.status(200).json(createSeries)
+    return res.status(200).json(createEpisode);
   } catch (error) {
     return res.status(500).json({
       success: false,
