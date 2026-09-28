@@ -18,6 +18,7 @@ import cookieParser from "cookie-parser"
 import SmsRoutes from "./routes/SmsRoute/route.js"
 import SignInRoute from "./routes/AuthRoute/route.js"
 import MovieRoute from "./routes/MovieRoute/route.js"
+import SeriesRoute from "./routes/SeriesRoute/route.js"
 
 const app = express()
 
@@ -53,6 +54,8 @@ app.use("/api" , SmsRoutes)
 app.use("/api" , SignInRoute)
 
 app.use("/api" , MovieRoute)
+
+app.use("/api" , SeriesRoute)
 
 app.use(( req , res ) => {
     res.status(404).json({
