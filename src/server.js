@@ -20,6 +20,8 @@ import SignInRoute from "./routes/AuthRoute/route.js"
 import MovieRoute from "./routes/MovieRoute/route.js"
 import SeriesRoute from "./routes/SeriesRoute/route.js"
 import EpisodeRoute from "./routes/EpisodeRoute/route.js"
+import ArticleRoute from "./routes/ArticleRoute/route.js"
+import SliderRoute from "./routes/SliderRoute/route.js"
 
 const app = express()
 
@@ -59,6 +61,10 @@ app.use("/api" , MovieRoute)
 app.use("/api" , SeriesRoute)
 
 app.use("/api" , EpisodeRoute)
+
+app.use("/api" , ArticleRoute)
+
+app.use("/api" , SliderRoute)
 
 app.use(( req , res ) => {
     res.status(404).json({
