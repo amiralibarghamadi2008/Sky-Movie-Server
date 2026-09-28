@@ -2,9 +2,9 @@ import Create_Series_Service from "../../../service/SeriesServices/Create_Series
 
 export default async function Create_Series_Controllers(req, res) {
   try {
-    const { titleSeries, mainImage, images, shortDes, longDes, genres, director, status, network, IMDbRating} = req.body;
+    const { titleSeries, mainImage, images, shortDes, longDes, genres, director, status, network, IMDbRating } = req.body;
 
-    const createSeries = await Create_Series_Service({ titleSeries, mainImage, images, shortDes, longDes, genres, director, status, network, IMDbRating} , req.user)
+    const createSeries = await Create_Series_Service({ titleSeries, mainImage, images, shortDes, longDes, genres, director, status, network, IMDbRating } , req.user)
 
     return res.status(200).json(createSeries)
   } catch (error) {

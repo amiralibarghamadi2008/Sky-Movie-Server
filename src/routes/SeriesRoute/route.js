@@ -5,6 +5,7 @@ import GetAll_Series_Controllers from "../../controller/SeriesControllers/GetAll
 import GetOne_Series_Controllers from "../../controller/SeriesControllers/GetOne_Series_Controllers/getOne_Series_Controllers.js";
 import Create_Series_Controllers from "../../controller/SeriesControllers/Create_Series_Controllers/create_Series_Controllers.js";
 import Delete_Series_Controllers from "../../controller/SeriesControllers/Delete_Series_Controllers/delete_Series_Controller.js";
+import Update_Series_Controllers from "../../controller/SeriesControllers/Update_Series_Controllers/update_Series_Controllers.js";
 
 // middleware's
 import LoginOnly from "../../middleware/Auth/LoginOnly/loginOnly.js";
@@ -19,6 +20,7 @@ route.get("/series/all" , GetAll_Series_Controllers)
 route.get("/series/:slug" , GetOne_Series_Controllers)
 route.post("/series/create" , Create_Series_Controllers)
 route.delete("/series/:id", LoginOnly , AdminOnly ,Delete_Series_Controllers)
+route.patch("/series/:id", LoginOnly , AdminOnly ,Update_Series_Controllers)
 route.post("/uploader", LoginOnly , AdminOnly ,ErrorHandel);
 
 export default route

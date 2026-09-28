@@ -4,7 +4,7 @@ export default async function Delete_Series_Controllers(req, res) {
   try {
     const queryParams = req.params.id
 
-    const deleteSeries = await Delete_Series_Service(queryParams)
+    const deleteSeries = await Delete_Series_Service(queryParams , req.user)
 
     return res.status(200).json(deleteSeries)
   } catch (error) {

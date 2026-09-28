@@ -2,12 +2,15 @@ import GetOne_Series_Service from "../../../service/SeriesServices/GetOne_Series
 
 export default async function GetOne_Series_Controllers(req, res) {
   try {
-    const queryParams = req.params.slug
+    const queryParams = req.params.slug;
 
-    const getOneSeries = await GetOne_Series_Service(queryParams)
+    const getOneSeries = await GetOne_Series_Service(queryParams);
 
-    return res.status(200).json(getOneSeries)
+    return res.status(200).json(getOneSeries);
   } catch (error) {
-    throw error;
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 }
