@@ -39,9 +39,9 @@ export async function DeleteMovie(movieId) {
   }
 }
 
-export async function UpdateMovie(movieData, movieId) {
+export async function UpdateMovie(movieId , movieData) {
   try {
-    return await Update(MovieModel, movieData, movieId);
+    return await Update(MovieModel, movieId , movieData);
   } catch (error) {
     throw error;
   }
