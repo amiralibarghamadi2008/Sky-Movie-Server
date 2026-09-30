@@ -15,8 +15,7 @@ import cookieParser from "cookie-parser"
 
 // api route's
 
-import SmsRoutes from "./routes/SmsRoute/route.js"
-import SignInRoute from "./routes/AuthRoute/route.js"
+import SmsRoute from "./routes/SmsRoute/route.js"
 import MovieRoute from "./routes/MovieRoute/route.js"
 import SeriesRoute from "./routes/SeriesRoute/route.js"
 import EpisodeRoute from "./routes/EpisodeRoute/route.js"
@@ -52,9 +51,7 @@ app.get("/" , (req , res) => {
     res.status(200).json("به سرور sky movie خوش آمدید")
 })
 
-app.use("/api" , SmsRoutes)
-
-app.use("/api" , SignInRoute)
+app.use("/api" , SmsRoute)
 
 app.use("/api" , MovieRoute)
 
