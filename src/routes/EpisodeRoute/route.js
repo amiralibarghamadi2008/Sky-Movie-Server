@@ -19,8 +19,8 @@ const route = express.Router()
 route.get("/episode/all" , GetAll_Episode_Controllers)
 route.get("/episode/:slug" , GetOne_Episode_Controllers)
 route.post("/episode/create" , Create_Episode_Controllers)
-route.delete("/episode/:id", LoginOnly , AdminOnly ,Delete_Episode_Controllers)
-route.patch("/episode/:id", LoginOnly , AdminOnly ,Update_Episode_Controllers)
-route.post("/uploader", LoginOnly , AdminOnly ,ErrorHandel);
+route.delete("/episode/delete-episode/:id", LoginOnly , AdminOnly ,Delete_Episode_Controllers)
+route.patch("/episode/udate-episode/:id", LoginOnly , AdminOnly ,Update_Episode_Controllers)
+route.post("/episode/uploader", LoginOnly , AdminOnly ,ErrorHandel);
 
 export default route
