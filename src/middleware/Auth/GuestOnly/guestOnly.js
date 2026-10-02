@@ -8,7 +8,7 @@ export default function GuestOnly(req, res, next) {
       const decode = VerifyAccessToken(token);
 
       if (decode) {
-        if (decode.role === "ADMIN") {
+        if (decode.userRole === "ADMIN") {
           return res.status(403).json({
             success: false,
             message: "شما قبلا لاگین کرده اید ودر نقش ادمین می باشید",
@@ -26,6 +26,6 @@ export default function GuestOnly(req, res, next) {
       next();
     }
   } catch (error) {
-    throw error;
+    return res.status(500).json({ success: false, message: error.message });
   }
 }

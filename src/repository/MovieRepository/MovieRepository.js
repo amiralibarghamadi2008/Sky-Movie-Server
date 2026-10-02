@@ -5,7 +5,7 @@ import {
   Create,
   Delete,
   Update,
-} from "../BaceRepository/BaceRepository.js";
+} from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllMovie() {
   try {
@@ -39,9 +39,9 @@ export async function DeleteMovie(movieId) {
   }
 }
 
-export async function UpdateMovie(movieId , movieData) {
+export async function UpdateMovie(movieId, movieData) {
   try {
-    return await Update(MovieModel, movieId , movieData);
+    return await Update(MovieModel, movieId, movieData);
   } catch (error) {
     throw error;
   }

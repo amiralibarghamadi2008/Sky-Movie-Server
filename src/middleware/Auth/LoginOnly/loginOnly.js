@@ -24,6 +24,6 @@ export default function LoginOnly(req, res, next) {
 
     next();
   } catch (error) {
-    throw error;
+    return res.status(500).json({ success: false, message: error.message });
   }
 }

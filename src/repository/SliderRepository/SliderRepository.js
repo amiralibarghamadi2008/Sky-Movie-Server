@@ -1,6 +1,6 @@
 import SliderModel from "../../model/SliderModel/slider.js";
 
-import { FindAll, Create, Delete } from "../BaceRepository/BaceRepository.js";
+import { FindAll, Create, Delete } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllSlider() {
   try {

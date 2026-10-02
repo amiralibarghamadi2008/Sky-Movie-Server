@@ -19,8 +19,8 @@ const route = express.Router();
 route.get("/movie/all", GetAll_Movie_Controller);
 route.get("/movie/:slug", GetOne_Movie_Controller);
 route.post("/movie/create", LoginOnly , AdminOnly ,Create_Movie_Controller);
-route.delete("/movie/:id", LoginOnly , AdminOnly ,Delete_Movie_Controller);
-route.patch("/movie/:id", LoginOnly , AdminOnly ,Update_Movie_Controller);
-route.post("/uploader", LoginOnly , AdminOnly ,ErrorHandel);
+route.delete("/movie/delete-movie/:id", LoginOnly , AdminOnly ,Delete_Movie_Controller);
+route.patch("/movie/udate-movie/:id", LoginOnly , AdminOnly ,Update_Movie_Controller);
+route.post("/movie/uploader", LoginOnly , AdminOnly ,ErrorHandel);
 
 export default route;

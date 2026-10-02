@@ -19,8 +19,8 @@ const route = express.Router()
 route.get("/series/all" , GetAll_Series_Controllers)
 route.get("/series/:slug" , GetOne_Series_Controllers)
 route.post("/series/create" , Create_Series_Controllers)
-route.delete("/series/:id", LoginOnly , AdminOnly ,Delete_Series_Controllers)
-route.patch("/series/:id", LoginOnly , AdminOnly ,Update_Series_Controllers)
-route.post("/uploader", LoginOnly , AdminOnly ,ErrorHandel);
+route.delete("/series/delete-series/:id", LoginOnly , AdminOnly ,Delete_Series_Controllers)
+route.patch("/series/udate-series/:id", LoginOnly , AdminOnly ,Update_Series_Controllers)
+route.post("/series/uploader", LoginOnly , AdminOnly ,ErrorHandel);
 
 export default route

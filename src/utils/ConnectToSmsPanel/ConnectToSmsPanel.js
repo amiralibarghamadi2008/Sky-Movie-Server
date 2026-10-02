@@ -1,7 +1,7 @@
 import "dotenv/config";
 import axios from 'axios';
 
-export default async function sendSMSWithPattern (userPhoneNumber, generatedCode) {
+export default async function SendSMSWithPattern (userPhoneNumber, generatedCode) {
   try {
     const url = 'https://rest.payamak-panel.com/api/SendSMS/BaseServiceNumber';
 

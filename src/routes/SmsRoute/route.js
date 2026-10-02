@@ -1,12 +1,16 @@
 import express from "express";
 
-import SmsController from "../../controller/SmsControllers/SendSmsController/SendSmsController.js";
-import Verify_Controllers from "../../controller/SmsControllers/VerifySmsController/VerifySmsController.js";
-import authLimiter from "../../middleware/RateLimit/AuthLimiter/authLimiter.js";
+// controller
+import SendSmsController from "../../controller/SmsControllers/SendSmsController/sendSmsController.js";
+import VerifyOtpCodeController from "../../controller/SmsControllers/VerifySmsController/VerifySmsController.js";
 
+// middleware's
+import authLimiter from "../../middleware/RateLimit/AuthLimiter/authLimiter.js"
+ 
 const route = express.Router()
 
-route.post("/send-sms" , authLimiter ,SmsController)
-route.post("/verify-sms" , authLimiter ,Verify_Controllers)
+route.post("/auth/send-sms" ,  authLimiter ,SendSmsController)
+route.post("/auth/verify-sms" , VerifyOtpCodeController)
+
 
 export default route
