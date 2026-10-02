@@ -14,9 +14,9 @@ const { ErrorHandel } = UploadImage();
 
 const route = express.Router()
 
-route.get("/episode/all" , GetAll_Slider_Controllers)
-route.post("/episode/create" , Create_Slider_Controllers)
-route.delete("/episode/:id", LoginOnly , AdminOnly ,Delete_Slider_Controllers)
+route.get("/slider/all" , GetAll_Slider_Controllers)
+route.post("/slider/create" , Create_Slider_Controllers)
+route.delete("/slider/:id", LoginOnly , AdminOnly ,Delete_Slider_Controllers)
 route.post("/uploader", LoginOnly , AdminOnly ,ErrorHandel);
 
 export default route
