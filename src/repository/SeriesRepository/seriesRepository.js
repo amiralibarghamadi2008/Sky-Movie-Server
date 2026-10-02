@@ -6,7 +6,7 @@ import {
   Create,
   Delete,
   Update,
-} from "../BaceRepository/BaceRepository.js";
+} from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllSeries() {
   try {

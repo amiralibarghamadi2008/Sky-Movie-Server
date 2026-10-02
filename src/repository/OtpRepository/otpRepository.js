@@ -1,5 +1,5 @@
 import OtpModel from "../../model/OtpModel/otp.js";
-import { FindOne, Create, Delete } from "../BaceRepository/BaceRepository.js";
+import { FindOne, Create, Delete } from "../BaseRepository/BaseRepository.js";
 
 export async function SendOtpCode(phoneNumber, otpCode) {
   try {
@@ -11,7 +11,11 @@ export async function SendOtpCode(phoneNumber, otpCode) {
 
 export async function FindOtpCode(phoneNumber) {
   try {
-    return await FindOne(OtpModel, { phoneNumber }, { sort: { createdAt: -1 } });
+    return await FindOne(
+      OtpModel,
+      { phoneNumber },
+      { sort: { createdAt: -1 } }
+    );
   } catch (error) {
     throw error;
   }
