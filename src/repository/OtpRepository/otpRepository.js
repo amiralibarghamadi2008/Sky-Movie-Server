@@ -17,7 +17,7 @@ export async function FindOtpCode(phoneNumber) {
   }
 }
 
-export async function SaveOtp(otpCode) {
+export async function DeleteOtp(otpCode) {
   try {
     return await Delete(OtpModel, otpCode);
   } catch (error) {

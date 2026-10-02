@@ -15,6 +15,7 @@ import cookieParser from "cookie-parser"
 
 // api route's
 
+import AuthRoute from "./routes/AuthRoute/route.js"
 import SmsRoute from "./routes/SmsRoute/route.js"
 import MovieRoute from "./routes/MovieRoute/route.js"
 import SeriesRoute from "./routes/SeriesRoute/route.js"
@@ -50,6 +51,8 @@ app.use(hpp());
 app.get("/" , (req , res) => {
     res.status(200).json("به سرور sky movie خوش آمدید")
 })
+
+app.use("/api" , AuthRoute)
 
 app.use("/api" , SmsRoute)
 
