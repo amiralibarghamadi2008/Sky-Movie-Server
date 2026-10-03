@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema(
       enum: ["ADMIN", "USER"],
       default: "USER",
     },
+    isBanned : {
+      type : Boolean,
+      default : false
+    },
     movieBookmark: [
       {
         type: mongoose.Types.ObjectId,
