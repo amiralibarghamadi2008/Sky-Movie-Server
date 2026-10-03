@@ -15,8 +15,9 @@ import cookieParser from "cookie-parser"
 
 // api route's
 
-import AuthRoute from "./routes/AuthRoute/route.js"
 import SmsRoute from "./routes/SmsRoute/route.js"
+import AuthRoute from "./routes/AuthRoute/route.js"
+import RefreshTokenRoute from "./routes/RefreshTokenRoute/route.js"
 import MovieRoute from "./routes/MovieRoute/route.js"
 import SeriesRoute from "./routes/SeriesRoute/route.js"
 import EpisodeRoute from "./routes/EpisodeRoute/route.js"
@@ -53,6 +54,8 @@ app.get("/" , (req , res) => {
 })
 
 app.use("/api" , AuthRoute)
+
+app.use("/api" , RefreshTokenRoute)
 
 app.use("/api" , SmsRoute)
 

@@ -8,7 +8,7 @@ export default function ClearAccessTokenCookie (res) {
             priority: "high",
             maxAge : 0
         })
-    }catch (err) {
-        throw new Error (`کوکی پاک نشد ${err}`)
+    }catch (error) {
+        throw new Error (`کوکی پاک نشد ${error}`)
     }
 }
