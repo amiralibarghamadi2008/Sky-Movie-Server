@@ -1,47 +1,28 @@
 import mongoose from "mongoose";
 
-const MessageSchema = new mongoose.Schema(
-  {
-    sender: {
-      type: mongoose.Types.ObjectId,
-      required: true,
-      ref: "user",
-    },
-    senderRole: {
-      type: String,
-      enum: ["USER", "ADMIN"],
-      default: "USER",
-    },
-    text: {
-      type: String,
-      trim: true,
-      required: true,
-      maxLength: 500,
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
-
 const TicketSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Types.ObjectId,
-      required: true,
-      ref: "user",
-    },
     subject: {
       type: String,
       trim: true,
       required: true,
       maxLength: 50,
     },
-    message: [MessageSchema],
+    message: {
+      type: String,
+      trim: true,
+      required: true,
+      maxLength: 500,
+    },
     status: {
       type: String,
       enum: ["pending", "answered"],
       default: "pending",
+    },
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: "user",
+      required: true,
     },
   },
   {

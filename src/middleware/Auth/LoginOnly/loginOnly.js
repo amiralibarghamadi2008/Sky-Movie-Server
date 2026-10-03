@@ -39,7 +39,7 @@ export default async function LoginOnly(req, res, next) {
 
       return res.status(403).json({
         success: false,
-        message: "اکانت شما مسدود شده است، برای پیگیری تیکت بزنید",
+        message: "اکانت شما مسدود شده است، برای پیگیری ایمیل بزنید",
       });
     }
 
