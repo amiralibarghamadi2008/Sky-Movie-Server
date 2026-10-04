@@ -43,8 +43,16 @@ const UserSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   },
 );
+
+UserSchema.virtual("userTicket", {
+  ref: "ticket",
+  localField: "_id",
+  foreignField: "user",
+});
 
 const UserModel = mongoose.models.user || mongoose.model("user", UserSchema);
 

@@ -13,9 +13,12 @@ export default async function SendSmsController(req, res) {
     return res.status(200).json({
       success: true,
       message: "کد تایید با موفقیت ارسال شد",
-      result: sendCode.phoneNumber
+      result: sendCode.phoneNumber,
     });
   } catch (error) {
-    throw error;
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 }
