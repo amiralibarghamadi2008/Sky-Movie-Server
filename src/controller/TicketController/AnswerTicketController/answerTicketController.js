@@ -1,7 +1,22 @@
 import AnswerTicketService from "../../../service/TicketServices/AnswerTicketService/answerTicketService.js";
+import { validateAnswerTicket } from "../../../validator/TicketValidator/ticketValidator.js";
 
 export default async function AnswerTicketController(req, res) {
   try {
+
+    const checkResult = validateAnswerTicket(req.body);
+
+    if (checkResult !== true) {
+      return res.status(422).json({
+        success: false,
+        message: checkResult[0].message,
+        errors: checkResult.map((error) => ({
+          field: error.field,
+          message: error.message,
+        })),
+      });
+    }
+
     const queryParams = req.params.id;
 
     const { subject, message } = req.body;

@@ -1,7 +1,22 @@
 import Update_Movie_Service from "../../../service/MovieServices/Update_Movie_Service/update_Movie_Service.js";
+import { validateUpdateMovie } from "../../../validator/MovieValidator/movieValidator.js";
 
 export default async function Update_Movie_Controller(req, res) {
   try {
+
+    const checkResult = validateUpdateMovie(req.body);
+
+    if (checkResult !== true) {
+      return res.status(422).json({
+        success: false,
+        message: checkResult[0].message,
+        errors: checkResult.map((error) => ({
+          field: error.field,
+          message: error.message,
+        })),
+      });
+    }
+
       const queryParams = req.params.id
       
       const {titleMovie, slug, mainImage, images, shortDes, longDes, genres, duration, director, IMDbRating, downloadLinks} = req.body

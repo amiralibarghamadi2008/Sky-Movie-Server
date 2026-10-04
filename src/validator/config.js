@@ -23,12 +23,14 @@ const v = new Validator({
   },
 });
 
-v.add("objectId", {
+// تعریف استاندارد قانون ObjectId به عنوان یک Rule مشترک
+export const objectIdRule = {
   type: "string",
   pattern: /^[0-9a-fA-F]{24}$/,
   messages: {
-    stringPattern: "شناسه ارسالی برای '{field}' یک ObjectId معتبر مانگوس نیست.",
+    stringPattern:
+      "شناسه وارد شده برای '{field}' یک ObjectId معتبر مانگوس نیست.",
   },
-});
+};
 
 export default v;

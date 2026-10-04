@@ -38,5 +38,33 @@ const answerTicketSchema = {
   $$strict: true,
 };
 
+// اسکیما برای ویرایش تیکت (فیلدها اختیاری ولی در صورت ارسال دارای ولیدیشن سخت‌گیرانه)
+const updateTicketSchema = {
+  subject: {
+    type: "string",
+    trim: true,
+    min: 3,
+    max: 50,
+    optional: true,
+    messages: {
+      stringMin: "موضوع تیکت باید حداقل ۳ کاراکتر باشد.",
+      stringMax: "موضوع تیکت نمی‌تواند بیشتر از ۵۰ کاراکتر باشد.",
+    },
+  },
+  message: {
+    type: "string",
+    trim: true,
+    min: 5,
+    max: 500,
+    optional: true,
+    messages: {
+      stringMin: "متن تیکت باید حداقل ۵ کاراکتر باشد.",
+      stringMax: "متن تیکت نمی‌تواند بیشتر از ۵۰۰ کاراکتر باشد.",
+    },
+  },
+  $$strict: true,
+};
+
 export const validateSendTicket = v.compile(sendTicketSchema);
 export const validateAnswerTicket = v.compile(answerTicketSchema);
+export const validateUpdateTicket = v.compile(updateTicketSchema);

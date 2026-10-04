@@ -1,4 +1,4 @@
-import v from "../config.js";
+import v, { objectIdRule } from "../config.js";
 
 const episodeDownloadLinkSchema = {
   type: "object",
@@ -24,7 +24,7 @@ const createEpisodeSchema = {
     convert: true,
   },
   duration: { type: "string", trim: true, min: 1 },
-  series: { type: "objectId" },
+  series: { ...objectIdRule },
   downloadLinks: {
     type: "array",
     items: episodeDownloadLinkSchema,
@@ -42,7 +42,7 @@ const updateEpisodeSchema = {
   seasonNumber: { ...createEpisodeSchema.seasonNumber, optional: true },
   episodeNumber: { ...createEpisodeSchema.episodeNumber, optional: true },
   duration: { ...createEpisodeSchema.duration, optional: true },
-  series: { ...createEpisodeSchema.series, optional: true },
+  series: { ...objectIdRule, optional: true },
   downloadLinks: { ...createEpisodeSchema.downloadLinks, optional: true },
   $$strict: true,
 };

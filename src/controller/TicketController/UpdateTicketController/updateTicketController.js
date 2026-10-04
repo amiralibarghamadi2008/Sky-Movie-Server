@@ -1,7 +1,22 @@
 import UpdateTicketService from "../../../service/TicketServices/UpdateTicketService/updateTicketService.js";
+import { validateUpdateTicket } from "../../../validator/TicketValidator/ticketValidator.js";
 
 export default async function UpdateTicketController(req, res) {
   try {
+
+    const checkResult = validateUpdateTicket(req.body);
+
+    if (checkResult !== true) {
+      return res.status(422).json({
+        success: false,
+        message: checkResult[0].message,
+        errors: checkResult.map((error) => ({
+          field: error.field,
+          message: error.message,
+        })),
+      });
+    }
+
     const queryParams = req.params.id;
 
     const { subject, message } = req.body;

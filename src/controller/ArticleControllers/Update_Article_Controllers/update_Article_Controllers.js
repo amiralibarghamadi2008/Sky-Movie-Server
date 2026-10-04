@@ -1,7 +1,21 @@
 import Update_Article_Service from "../../../service/ArticleServices/Update_Article_Service/update_Article_Service.js";
+import { validateUpdateArticle } from "../../../validator/ArticleValidator/articleValidator.js";
 
 export default async function Update_Article_Controllers(req, res) {
   try {
+    const checkResult = validateUpdateArticle(req.body);
+    
+    if (checkResult !== true) {
+      return res.status(422).json({
+        success: false,
+        message: checkResult[0].message,
+        errors: checkResult.map((error) => ({
+          field: error.field,
+          message: error.message,
+        })),
+      });
+    }
+
     const queryParams = req.params.id
 
     const { titleArticle , image , shortDes , longDes } = req.body;
