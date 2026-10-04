@@ -21,6 +21,21 @@ export async function FindOne(model, filter, options = {}) {
   }
 }
 
+export async function FindOneById(model, filter, options = {}) {
+  try {
+    let queryParams = model.findById(filter);
+    if (options.sort) {
+      queryParams = queryParams.sort(options.sort);
+    }
+    if (options.populate) {
+      queryParams = queryParams.populate(options.populate);
+    }
+    return await queryParams;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function Create(model, data) {
   try {
     return await model.create(data);

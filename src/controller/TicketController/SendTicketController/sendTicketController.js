@@ -4,6 +4,8 @@ export default async function SendTicketController(req, res) {
   try {
     const { subject, message } = req.body;
 
+    console.log("Logged in user:", req.user.userId);
+
     if (!subject || !message) {
       return res.status(400).json("متن و موضوع تیکت اجباری هستش");
     }
@@ -11,7 +13,7 @@ export default async function SendTicketController(req, res) {
     const sendTicket = await SendTicketService({
       subject,
       message,
-      user: req.user._id,
+      user: req.user.userId,
     });
 
     return res.status(200).json({

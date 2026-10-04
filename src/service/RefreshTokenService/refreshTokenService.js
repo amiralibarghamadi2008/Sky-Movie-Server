@@ -1,5 +1,5 @@
 import VerifyRefreshToken from "../../utils/tokens/VerifyRefreshToken/verifyRefreshToken.js";
-import { FindOneUser } from "../../repository/UserRepository/UserRepository.js";
+import { FindOneUserById } from "../../repository/UserRepository/UserRepository.js";
 import AccessToken from "../../utils/tokens/AccessToken/accessToken.js";
 import RefreshToken from "../../utils/tokens/RefreshToken/refreshToken.js";
 
@@ -11,7 +11,7 @@ export default async function RefreshTokenService(token) {
       throw new Error("دوباره لاگین کنید");
     }
 
-    const user = await FindOneUser(decode.userId);
+    const user = await FindOneUserById(decode.userId);
 
     if (!user) {
       throw new Error("همچین کاربری یافت نشد");

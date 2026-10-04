@@ -5,6 +5,7 @@ import {
   Create,
   Delete,
   Update,
+  FindOneById,
 } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllUser() {
@@ -18,6 +19,14 @@ export async function FindAllUser() {
 export async function FindOneUser(userId) {
   try {
     return await FindOne(UserModel, userId);
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function FindOneUserById(userId) {
+  try {
+    return await FindOneById(UserModel, userId);
   } catch (err) {
     throw err;
   }

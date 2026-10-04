@@ -10,7 +10,6 @@ export default async function SendSmsService(userData) {
 
     console.log(generatOtpCode);
     
-
     const resId = await SendSMSWithPattern(phoneNumber , generatOtpCode)
 
     const Send = await SendOtpCode(phoneNumber , generatOtpCode)

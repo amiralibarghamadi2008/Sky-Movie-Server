@@ -4,13 +4,13 @@ import RefreshTokenCookie from "../../utils/Cookies/SetCookies/RefreshTokenCooki
 
 export default async function RefreshTokenController(req, res) {
   try {
-    const { refreshToken } = req.cookies;
+    const { refreshToken } = req.cookies;    
 
     if (!refreshToken) {
-      res.status(401).json("دسترسی غیر مجاز");
+      return res.status(401).json("دسترسی غیر مجاز");
     }
 
-    const { newAccessToken, newRefreshToken } = await RefreshTokenService({ refreshToken });
+    const { newAccessToken, newRefreshToken } = await RefreshTokenService(refreshToken);
 
     AccessTokenCookie(res , newAccessToken)
 

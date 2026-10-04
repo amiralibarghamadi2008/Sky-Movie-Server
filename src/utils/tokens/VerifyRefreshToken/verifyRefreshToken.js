@@ -7,6 +7,6 @@ export default function VerifyRefreshToken(token) {
 
     return decode;
   } catch (error) {
-    throw new Error(`توکن وریفای نشد${error}`);
+    throw new Error(`رفرش توکن وریفای نشد${error}`);
   }
 }

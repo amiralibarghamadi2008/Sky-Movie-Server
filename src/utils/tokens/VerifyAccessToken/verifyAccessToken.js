@@ -7,6 +7,6 @@ export default function VerifyAccessToken(token) {
 
     return decode;
   } catch (error) {
-    throw new Error(`توکن وریفای نشد${error}`);
+    throw new Error(`اکسس توکن وریفای نشد${error}`);
   }
 }

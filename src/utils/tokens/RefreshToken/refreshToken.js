@@ -11,7 +11,7 @@ export default function RefreshToken(userData) {
         userRole: userData.role,
         jti: crypto.randomUUID(),
       },
-      process.env.Access_Token_Security_Code,
+      process.env.Refresh_Token_Security_Code,
       { expiresIn: "20d" }
     );
 

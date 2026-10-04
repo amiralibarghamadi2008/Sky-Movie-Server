@@ -5,6 +5,6 @@ import RefreshTokenController from "../../controller/RefreshTokenController/refr
  
 const route = express.Router()
 
-route.post("/auth/send-sms" , RefreshTokenController)
+route.post("/auth/refreh-token" , RefreshTokenController)
 
 export default route
