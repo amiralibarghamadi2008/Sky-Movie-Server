@@ -1,6 +1,6 @@
 export default function AdminOnly(req, res, next) {
   try {
-    if (req.user?.role !== "ADMIN") {
+    if (req.user?.userRole !== "ADMIN") {
       return res.status(403).json({
         success: false,
         message: "دسترسی غیرمجاز: این بخش فقط مخصوص ادمین است",
