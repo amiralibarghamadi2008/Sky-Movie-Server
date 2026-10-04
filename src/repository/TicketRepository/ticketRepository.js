@@ -1,5 +1,5 @@
 import TicketModel from "../../model/TicketModel/ticket.js";
-import { FindOneById, FindAll, Create, Update } from "../BaseRepository/BaseRepository.js";
+import { FindOneById, FindAll, Create, Update, Delete } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllTicket() {
   try {
@@ -9,7 +9,7 @@ export async function FindAllTicket() {
   }
 }
 
-export async function FindTicket(ticketId) {
+export async function FindOneTicket(ticketId) {
   try {
     return await FindOneById(TicketModel , ticketId)
   } catch (error) {
@@ -20,6 +20,14 @@ export async function FindTicket(ticketId) {
 export async function SendTicket(ticketData) {
   try {
     return await Create(TicketModel , ticketData)
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function DeleteTicket(ticketData) {
+  try {
+    return await Delete(TicketModel , ticketData)
   } catch (error) {
     throw error;
   }
