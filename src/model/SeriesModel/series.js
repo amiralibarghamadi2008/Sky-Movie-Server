@@ -8,6 +8,13 @@ const SeriesSchema = new mongoose.Schema(
           required: true,
           maxLength: 30,
         },
+        slug: {
+          type: String,
+          trim: true,
+          required: true,
+          maxLength: 35,
+          unique : true 
+        },
         mainImage: {
           type: String,
           required: [true, "تصویر اصلی محصول الزامی است"],
@@ -70,6 +77,12 @@ SeriesSchema.virtual("seriesComments" , {
     localField : "_id",
     foreignField: "series",
 })
+
+SeriesSchema.index({ createdAt: -1 });
+
+SeriesSchema.index({ genres : 1 })
+
+SeriesSchema.index({ titleSeries : 1 })
 
 const SeriesModel = mongoose.models.series || mongoose.model("series" , SeriesSchema)
 

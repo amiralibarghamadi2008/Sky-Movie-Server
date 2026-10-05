@@ -39,6 +39,16 @@ const CommentSchema = new mongoose.Schema(
     }
 )
 
+CommentSchema.index({ movie: 1 });
+
+CommentSchema.index({ series: 1 });
+
+CommentSchema.index({ article: 1 });
+
+CommentSchema.index({ user: 1 });
+
+CommentSchema.index({ createdAt: -1 });
+
 const CommentModel = mongoose.models.comment || mongoose.model("comment" , CommentSchema)
 
 export default CommentModel

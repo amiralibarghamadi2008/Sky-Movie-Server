@@ -24,6 +24,12 @@ const EpisodeSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    slug: {
+      type: String,
+      trim: true,
+      required: true,
+      maxLength: 35,
+    },
     seasonNumber: {
       type: Number,
       required: true,
@@ -52,6 +58,10 @@ const EpisodeSchema = new mongoose.Schema(
 );
 
 EpisodeSchema.index({ series: 1, seasonNumber: 1, episodeNumber: 1 }, { unique: true });
+
+EpisodeSchema.index({ series: 1, slug: 1 }, { unique: true });
+
+EpisodeSchema.index({ createdAt: -1 });
 
 const EpisodeModel =
   mongoose.models.episode || mongoose.model("episode", EpisodeSchema);

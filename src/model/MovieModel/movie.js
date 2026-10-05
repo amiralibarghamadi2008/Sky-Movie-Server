@@ -32,6 +32,7 @@ const MovieSchema = new mongoose.Schema(
       trim: true,
       required: true,
       maxLength: 35,
+      unique : true 
     },
     mainImage: {
       type: String,
@@ -89,9 +90,11 @@ MovieSchema.virtual("movieComments", {
   foreignField: "movie",
 });
 
-MovieSchema.index({ titleMovie: 1, slug: 1 }, { unique: true });
+MovieSchema.index({ createdAt: -1 });
 
 MovieSchema.index({ genres: 1 });
+
+MovieSchema.index({ titleMovie : 1 });
 
 const MovieModel =
   mongoose.models.movie || mongoose.model("movie", MovieSchema);

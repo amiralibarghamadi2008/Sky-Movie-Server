@@ -30,6 +30,12 @@ const TicketSchema = new mongoose.Schema(
   }
 );
 
+TicketSchema.index({subject : 1})
+
+TicketSchema.index({user : 1})
+
+TicketSchema.index({ createdAt: -1 });
+
 const TicketModel =
   mongoose.models.ticket || mongoose.model("ticket", TicketSchema);
 

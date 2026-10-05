@@ -54,6 +54,8 @@ UserSchema.virtual("userTicket", {
   foreignField: "user",
 });
 
+UserSchema.index({ createdAt: -1 });
+
 const UserModel = mongoose.models.user || mongoose.model("user", UserSchema);
 
 export default UserModel;
