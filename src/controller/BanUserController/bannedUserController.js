@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import BannedUserService from "../../service/BannedUserService/bannedUserService.js";
 import { validateBanUser } from "../../validator/UserValidator/userValidator.js";
 
@@ -18,6 +19,16 @@ export default async function BannedUserController(req, res) {
     }
 
     const queryParams = req.params.id;
+
+
+    const isValidObjectId = mongoose.Types.ObjectId.isValid(queryParams);
+
+    if (isValidObjectId === false) {
+      return res.status(400).json({
+        success: false,
+        message: "همچین شانسه ای معتبر نیست",
+      });
+    }
 
     const { isBanned } = req.body;
 

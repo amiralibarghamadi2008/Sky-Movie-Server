@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Update_Series_Service from "../../../service/SeriesServices/Update_Series_Service/update_Series_Service.js";
 import { validateUpdateSeries } from "../../../validator/SeriesValidator/seriesValidator.js";
 
@@ -18,6 +19,16 @@ export default async function Update_Series_Controllers(req, res) {
     }
 
     const queryParams = req.params.id
+
+
+    const isValidObjectId = mongoose.Types.ObjectId.isValid(queryParams);
+
+    if (isValidObjectId === false) {
+      return res.status(400).json({
+        success: false,
+        message: "همچین شانسه ای معتبر نیست",
+      });
+    }
 
     const { titleSeries, mainImage, images, shortDes, longDes, genres, director, status, network, IMDbRating } = req.body;
 

@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import UpdateTicketService from "../../../service/TicketServices/UpdateTicketService/updateTicketService.js";
 import { validateUpdateTicket } from "../../../validator/TicketValidator/ticketValidator.js";
 
@@ -18,6 +19,15 @@ export default async function UpdateTicketController(req, res) {
     }
 
     const queryParams = req.params.id;
+
+    const isValidObjectId = mongoose.Types.ObjectId.isValid(queryParams);
+
+    if (isValidObjectId === false) {
+      return res.status(400).json({
+        success: false,
+        message: "همچین شانسه ای معتبر نیست",
+      });
+    }
 
     const { subject, message } = req.body;
 

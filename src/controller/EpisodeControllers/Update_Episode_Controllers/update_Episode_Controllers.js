@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Update_Episode_Service from "../../../service/EpisodeService/Update_Episode_Service/update_Episode_Service.js";
 import { validateUpdateEpisode } from "../../../validator/EpisodeValidator/episodeValidator.js";
 
@@ -18,6 +19,15 @@ export default async function Update_Episode_Controllers(req, res) {
     }
 
     const queryParams = req.params.id
+
+    const isValidObjectId = mongoose.Types.ObjectId.isValid(queryParams);
+
+    if (isValidObjectId === false) {
+      return res.status(400).json({
+        success: false,
+        message: "همچین شانسه ای معتبر نیست",
+      });
+    }
 
     const { titleEpisode, seasonNumber, episodeNumber, duration, series, downloadLinks } = req.body;
 

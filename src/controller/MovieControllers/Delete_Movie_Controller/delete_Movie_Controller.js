@@ -1,8 +1,18 @@
+import mongoose from "mongoose";
 import Delete_Movie_Service from "../../../service/MovieServices/Delete_Movie_Service/delete_Movie_Service.js";
 
 export default async function Delete_Movie_Controller(req, res) {
   try {
     const queryParams = req.params.id;
+
+    const isValidObjectId = mongoose.Types.ObjectId.isValid(queryParams);
+
+    if (isValidObjectId === false) {
+      return res.status(400).json({
+        success: false,
+        message: "همچین شانسه ای معتبر نیست",
+      });
+    }
 
     const deleteMovie = await Delete_Movie_Service(queryParams, req.user);
 

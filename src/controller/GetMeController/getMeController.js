@@ -1,8 +1,18 @@
+import mongoose from "mongoose";
 import GetMeService from "../../service/GetMeService/getMeService.js";
 
 export default async function GetMeController(req, res) {
   try {
     const userId = req.user.id;
+
+    const isValidObjectId = mongoose.Types.ObjectId.isValid(userId);
+
+    if (isValidObjectId === false) {
+      return res.status(400).json({
+        success: false,
+        message: "همچین شانسه ای معتبر نیست",
+      });
+    }
 
     const userData = await GetMeService(userId);
 
