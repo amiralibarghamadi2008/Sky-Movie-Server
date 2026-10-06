@@ -45,7 +45,7 @@ export default async function LoginOnly(req, res, next) {
 
     req.user = decode;
 
-    next();
+    return next();
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
