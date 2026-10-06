@@ -48,10 +48,18 @@ export async function UpdateTicket(ticketId, ticketData) {
   }
 }
 
-export async function SearchTicket(ticketSlug) {
+export async function SearchTicket(keyword) {
   try {
-    return await FindAllForSearch(TicketModel, ticketSlug);
-  } catch (error) {
+    const filter = {$text : {$search : keyword}}
+
+    const option = {
+      select: "subject message",
+      limit: 6,
+      sort: { score: { $meta: "textScore" } },
+    }
+
+    return await FindAllForSearch(TicketModel, filter , option);
+  }  catch (error) {
     throw error;
   }
 }

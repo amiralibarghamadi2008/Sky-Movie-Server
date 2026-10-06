@@ -59,9 +59,17 @@ export async function UpdateSeries(seriesId, seriesData) {
   }
 }
 
-export async function SearchSeries(seriesSlug) {
+export async function SearchSeries(keyword) {
   try {
-    return await FindAllForSearch(SeriesModel, seriesSlug);
+    const filter = { $text: { $search: keyword } };
+
+    const option = {
+      select: "titleSeries genres shortDes",
+      limit: 6,
+      sort: { score: { $meta: "textScore" } },
+    };
+
+    return await FindAllForSearch(SeriesModel, filter, option);
   } catch (error) {
     throw error;
   }

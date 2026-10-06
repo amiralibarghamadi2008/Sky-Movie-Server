@@ -48,9 +48,17 @@ export async function UpdateMovie(movieId, movieData) {
   }
 }
 
-export async function SearchMovie(movieSlug) {
+export async function SearchMovie(keyword) {
   try {
-    return await FindAllForSearch(MovieModel, movieSlug);
+    const filter = {$text : {$search : keyword}}
+
+    const option = {
+      select: "titleMovie genres shortDes",
+      limit: 6,
+      sort: { score: { $meta: "textScore" } },
+    }
+
+    return await FindAllForSearch(MovieModel, filter , option);
   } catch (error) {
     throw error;
   }

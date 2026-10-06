@@ -59,10 +59,18 @@ export async function UpdateArticle(articleId, articleData) {
   }
 }
 
-export async function SearchArticle(articleSlug) {
+export async function SearchArticle(keyword) {
   try {
-    return await FindAllForSearch(ArticleModel, articleSlug);
-  } catch (error) {
+    const filter = {$text : {$search : keyword}}
+
+    const option = {
+      select: "titleArticle shortDes",
+      limit: 6,
+      sort: { score: { $meta: "textScore" } },
+    }
+
+    return await FindAllForSearch(ArticleModel, filter , option);
+  }  catch (error) {
     throw error;
   }
 }

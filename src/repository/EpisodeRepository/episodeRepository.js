@@ -59,10 +59,18 @@ export async function UpdateEpisode(episodeId, episodeData) {
   }
 }
 
-export async function SearchEpisode(episodeSlug) {
+export async function SearchEpisode(keyword) {
   try {
-    return await FindAllForSearch(EpisodeModel, episodeSlug);
-  } catch (error) {
+    const filter = {$text : {$search : keyword}}
+
+    const option = {
+      select: "titleEpisode",
+      limit: 6,
+      sort: { score: { $meta: "textScore" } },
+    }
+
+    return await FindAllForSearch(EpisodeModel, filter , option);
+  }  catch (error) {
     throw error;
   }
 }
