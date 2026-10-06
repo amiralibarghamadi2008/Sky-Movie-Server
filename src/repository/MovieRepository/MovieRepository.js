@@ -5,6 +5,7 @@ import {
   Create,
   Delete,
   Update,
+  FindAllForSearch,
 } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllMovie() {
@@ -42,6 +43,14 @@ export async function DeleteMovie(movieId) {
 export async function UpdateMovie(movieId, movieData) {
   try {
     return await Update(MovieModel, movieId, movieData);
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function SearchMovie(movieSlug) {
+  try {
+    return await FindAllForSearch(MovieModel, movieSlug);
   } catch (error) {
     throw error;
   }

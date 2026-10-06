@@ -6,6 +6,7 @@ import {
   Create,
   Delete,
   Update,
+  FindAllForSearch,
 } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllSeries() {
@@ -53,6 +54,14 @@ export async function UpdateSeries(seriesId, seriesData) {
     const UpdateSeries = await Update(SeriesModel, seriesId, seriesData);
 
     return UpdateSeries;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function SearchSeries(seriesSlug) {
+  try {
+    return await FindAllForSearch(SeriesModel, seriesSlug);
   } catch (error) {
     throw error;
   }

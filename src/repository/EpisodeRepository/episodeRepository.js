@@ -6,6 +6,7 @@ import {
   Create,
   Delete,
   Update,
+  FindAllForSearch,
 } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllEpisode() {
@@ -53,6 +54,14 @@ export async function UpdateEpisode(episodeId, episodeData) {
     const UpdateEpisode = await Update(EpisodeModel, episodeId, episodeData);
 
     return UpdateEpisode;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function SearchEpisode(episodeSlug) {
+  try {
+    return await FindAllForSearch(EpisodeModel, episodeSlug);
   } catch (error) {
     throw error;
   }
