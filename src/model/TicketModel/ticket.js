@@ -36,6 +36,20 @@ TicketSchema.index({user : 1})
 
 TicketSchema.index({ createdAt: -1 });
 
+TicketSchema.index(
+  {
+    subject: "text",
+    message: "text",
+  },
+  {
+    weights: {
+      subject: 10,
+      message: 3,
+    },
+    default_language: "none",
+  }
+);
+
 const TicketModel =
   mongoose.models.ticket || mongoose.model("ticket", TicketSchema);
 

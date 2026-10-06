@@ -56,6 +56,8 @@ UserSchema.virtual("userTicket", {
 
 UserSchema.index({ createdAt: -1 });
 
+UserSchema.index({ firstName: "text" }, { default_language: "none" });
+
 const UserModel = mongoose.models.user || mongoose.model("user", UserSchema);
 
 export default UserModel;

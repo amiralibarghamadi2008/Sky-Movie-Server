@@ -96,6 +96,22 @@ MovieSchema.index({ genres: 1 });
 
 MovieSchema.index({ titleMovie : 1 });
 
+MovieSchema.index(
+  {
+    titleMovie: "text",
+    genres: "text",
+    shortDes: "text",
+  },
+  {
+    weights: {
+      titleMovie: 10,
+      genres: 5,
+      shortDes: 1,
+    },
+    default_language: "none",
+  }
+);
+
 const MovieModel =
   mongoose.models.movie || mongoose.model("movie", MovieSchema);
 
