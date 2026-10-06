@@ -21,10 +21,9 @@ export default function GuestOnly(req, res, next) {
             redirectTo: "/user/Panel",
           });
         }
-      } else {
-        res.clearCookie("accessToken")
       }
     } else {
+      res.clearCookie("accessToken")
       return next();
     }
   } catch (error) {
