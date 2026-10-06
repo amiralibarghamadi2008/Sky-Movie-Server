@@ -4,7 +4,7 @@ export default async function ConnectToDBMiddleware(req, res, next) {
   try {
     await ConnectToDB();
 
-    next();
+    return next();
   } catch (error) {
     return res.status(500).json({
       success: false,
