@@ -1,7 +1,22 @@
 import SendSmsService from "../../../service/SmsService/SendSmsService/sendSmsService.js";
+import { validateSendSms } from "../../../validator/AuthValidator/authValidator.js";
 
 export default async function SendSmsController(req, res) {
   try {
+
+    const checkResult = validateSendSms(req.body);
+
+    if (checkResult !== true) {
+      return res.status(422).json({
+        success: false,
+        message: checkResult[0].message,
+        errors: checkResult.map((error) => ({
+          field: error.field,
+          message: error.message,
+        })),
+      });
+    }
+
     const { phoneNumber } = req.body;
 
     if (!phoneNumber) {

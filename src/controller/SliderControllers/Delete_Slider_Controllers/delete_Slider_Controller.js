@@ -1,8 +1,18 @@
+import mongoose from "mongoose";
 import Delete_Slider_Service from "../../../service/SliderServices/Delete_Slider_Service/delete_Slider_Service.js";
 
 export default async function Delete_Slider_Controllers(req, res) {
   try {
     const queryParams = req.params.id
+
+    const isValidObjectId = mongoose.Types.ObjectId.isValid(queryParams);
+
+    if (isValidObjectId === false) {
+      return res.status(400).json({
+        success: false,
+        message: "همچین شانسه ای معتبر نیست",
+      });
+    }
 
     const deleteSlider = await Delete_Slider_Service(queryParams , req.user)
 
