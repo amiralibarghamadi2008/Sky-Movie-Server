@@ -63,6 +63,8 @@ EpisodeSchema.index({ series: 1, slug: 1 }, { unique: true });
 
 EpisodeSchema.index({ createdAt: -1 });
 
+EpisodeSchema.index({ titleEpisode: "text" }, { default_language: "none" });
+
 const EpisodeModel =
   mongoose.models.episode || mongoose.model("episode", EpisodeSchema);
 

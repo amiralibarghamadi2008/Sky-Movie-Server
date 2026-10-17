@@ -84,6 +84,22 @@ SeriesSchema.index({ genres : 1 })
 
 SeriesSchema.index({ titleSeries : 1 })
 
+SeriesSchema.index(
+  {
+    titleSeries: "text",
+    genres: "text",
+    shortDes: "text",
+  },
+  {
+    weights: {
+      titleSeries: 10,
+      genres: 5,
+      shortDes: 1,
+    },
+    default_language: "none",
+  }
+);
+
 const SeriesModel = mongoose.models.series || mongoose.model("series" , SeriesSchema)
 
 export default SeriesModel

@@ -6,6 +6,7 @@ import {
   Create,
   Delete,
   Update,
+  FindAllForSearch,
 } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllArticle() {
@@ -54,6 +55,22 @@ export async function UpdateArticle(articleId, articleData) {
 
     return UpdateArticle;
   } catch (error) {
+    throw error;
+  }
+}
+
+export async function SearchArticle(keyword) {
+  try {
+    const filter = {$text : {$search : keyword}}
+
+    const option = {
+      select: "titleArticle shortDes",
+      limit: 6,
+      sort: { score: { $meta: "textScore" } },
+    }
+
+    return await FindAllForSearch(ArticleModel, filter , option);
+  }  catch (error) {
     throw error;
   }
 }

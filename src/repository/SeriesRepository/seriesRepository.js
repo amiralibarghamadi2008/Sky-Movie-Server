@@ -6,6 +6,7 @@ import {
   Create,
   Delete,
   Update,
+  FindAllForSearch,
 } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllSeries() {
@@ -53,6 +54,22 @@ export async function UpdateSeries(seriesId, seriesData) {
     const UpdateSeries = await Update(SeriesModel, seriesId, seriesData);
 
     return UpdateSeries;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function SearchSeries(keyword) {
+  try {
+    const filter = { $text: { $search: keyword } };
+
+    const option = {
+      select: "titleSeries genres shortDes",
+      limit: 6,
+      sort: { score: { $meta: "textScore" } },
+    };
+
+    return await FindAllForSearch(SeriesModel, filter, option);
   } catch (error) {
     throw error;
   }

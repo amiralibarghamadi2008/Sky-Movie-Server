@@ -6,6 +6,7 @@ import {
   Create,
   Delete,
   Update,
+  FindAllForSearch,
 } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllEpisode() {
@@ -54,6 +55,22 @@ export async function UpdateEpisode(episodeId, episodeData) {
 
     return UpdateEpisode;
   } catch (error) {
+    throw error;
+  }
+}
+
+export async function SearchEpisode(keyword) {
+  try {
+    const filter = {$text : {$search : keyword}}
+
+    const option = {
+      select: "titleEpisode",
+      limit: 6,
+      sort: { score: { $meta: "textScore" } },
+    }
+
+    return await FindAllForSearch(EpisodeModel, filter , option);
+  }  catch (error) {
     throw error;
   }
 }
