@@ -47,6 +47,20 @@ ArticleSchema.index({ slug : 1 } , { unique : true })
 
 ArticleSchema.index({ titleArticle : 1 } , { unique : true })
 
+ArticleSchema.index(
+  {
+    titleArticle: "text",
+    shortDes: "text",
+  },
+  {
+    weights: {
+      titleMovie: 10,
+      shortDes: 5,
+    },
+    default_language: "none",
+  }
+);
+
 const ArticleModel = mongoose.models.article || mongoose.model("article" , ArticleSchema)
 
 export default ArticleModel

@@ -6,6 +6,7 @@ import {
   Delete,
   Update,
   FindOneById,
+  FindAllForSearch,
 } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllUser() {
@@ -59,6 +60,22 @@ export async function DeleteUser(userId) {
 export async function UpdateUser(userId, userData) {
   try {
     return await Update(UserModel, userId, userData);
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function SearchUser(keyword) {
+  try {
+    const filter = { $text: { $search: keyword } };
+
+    const options = {
+      select: "firstName",
+      limit: 6,
+      sort: { score: { $meta: "textScore" } },
+    };
+
+    return await FindAllForSearch(UserModel , filter , options)
   } catch (err) {
     throw err;
   }

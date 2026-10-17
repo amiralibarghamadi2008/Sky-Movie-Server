@@ -6,6 +6,27 @@ export async function FindAll(model) {
   }
 }
 
+export async function FindAllForSearch(model, filter, options = {}) {
+  try {
+    let queryParams = model.find(filter);
+    if (options.sort) {
+      queryParams = queryParams.sort(options.sort);
+    }
+    if (options.select) {
+      queryParams = queryParams.select(options.select);
+    }
+    if (options.limit) {
+      queryParams = queryParams.limit(options.limit);
+    }
+    if (options.populate) {
+      queryParams = queryParams.populate(options.populate);
+    }
+    return await queryParams;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function FindOne(model, filter, options = {}) {
   try {
     let queryParams = model.findOne(filter);
@@ -56,7 +77,7 @@ export async function Update(model, filter, data) {
   try {
     return await model.findByIdAndUpdate(
       filter,
-      { set: data },
+      { $set: data },
       {
         new: true,
         runValidators: true,

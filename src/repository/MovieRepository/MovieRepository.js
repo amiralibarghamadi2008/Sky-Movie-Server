@@ -5,6 +5,7 @@ import {
   Create,
   Delete,
   Update,
+  FindAllForSearch,
 } from "../BaseRepository/BaseRepository.js";
 
 export async function FindAllMovie() {
@@ -42,6 +43,22 @@ export async function DeleteMovie(movieId) {
 export async function UpdateMovie(movieId, movieData) {
   try {
     return await Update(MovieModel, movieId, movieData);
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function SearchMovie(keyword) {
+  try {
+    const filter = {$text : {$search : keyword}}
+
+    const option = {
+      select: "titleMovie genres shortDes",
+      limit: 6,
+      sort: { score: { $meta: "textScore" } },
+    }
+
+    return await FindAllForSearch(MovieModel, filter , option);
   } catch (error) {
     throw error;
   }
