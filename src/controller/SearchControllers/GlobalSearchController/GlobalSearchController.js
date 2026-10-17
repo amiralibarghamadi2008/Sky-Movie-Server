@@ -5,7 +5,7 @@ export default async function GlobalSearchController(req, res) {
     const searchParam = req.query.q;
 
     if (!searchParam) {
-      return res.status(400).json({
+      return res.status(404).json({
         success: false,
         message: "موردی سرچ نشد",
       });

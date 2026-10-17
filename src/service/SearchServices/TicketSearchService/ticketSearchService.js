@@ -1,14 +1,14 @@
 import { SearchTicket } from "../../../repository/TicketRepository/ticketRepository.js";
 
-export default async function TicketSearchService(slug) {
+export default async function TicketSearchService(keyword) {
   try {
-    const querySlug = slug;
+    const queryKeyWord = keyword;
 
-    if (!querySlug) {
+    if (!queryKeyWord) {
       throw new Error("موردی برای سرچ کردن وارد نشده است");
     }
 
-    const searchTicket = await SearchTicket(querySlug);
+    const searchTicket = await SearchTicket(queryKeyWord);
 
     return { success: true, searchTicket };
   } catch (error) {

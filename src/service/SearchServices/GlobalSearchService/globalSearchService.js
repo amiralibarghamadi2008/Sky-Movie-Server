@@ -3,20 +3,20 @@ import { SearchSeries } from "../../../repository/SeriesRepository/seriesReposit
 import { SearchEpisode } from "../../../repository/EpisodeRepository/episodeRepository.js";
 import { SearchArticle } from "../../../repository/ArticleRepository/ArticleRepository.js";
 
-export default async function GlobalSearchService(slug) {
+export default async function GlobalSearchService(keyword) {
   try {
-    const querySlug = slug;
+    const queryKeyWord = keyword;
 
-    if (!querySlug) {
+    if (!queryKeyWord) {
       throw new Error("موردی برای سرچ کردن وارد نشده است");
     }
 
     const [searchMovie, searchSeries, searchEpisode, searchArticle] =
       await Promise.all([
-        SearchMovie(querySlug),
-        SearchSeries(querySlug),
-        SearchEpisode(querySlug),
-        SearchArticle(querySlug),
+        SearchMovie(queryKeyWord),
+        SearchSeries(queryKeyWord),
+        SearchEpisode(queryKeyWord),
+        SearchArticle(queryKeyWord),
       ]);
 
     return {
