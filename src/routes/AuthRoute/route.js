@@ -6,7 +6,7 @@ import signOutController from "../../controller/AuthControllers/SignOutControlle
 import GetMeController from "../../controller/GetMeController/getMeController.js";
 import MackeAdminController from "../../controller/MackeAdminController/mackeAdminController.js";
 import DeleteAccountController from "../../controller/DeleteAccountController/deleteAccountController.js";
-import BannedUserController from "../../controller/BanUserController/bannedUserController.js";
+import BannedUserController from "../../controller/BannedUserController/bannedUserController.js";
 
 // middleware's
 import authLimiter from "../../middleware/RateLimit/AuthLimiter/authLimiter.js";

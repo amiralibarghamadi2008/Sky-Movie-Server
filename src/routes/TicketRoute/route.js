@@ -15,7 +15,7 @@ import AdminOnly from "../../middleware/Auth/AdminOnly/adminOnly.js";
 const route = express.Router();
 
 route.get("/get-all-ticket", LoginOnly, AdminOnly ,ShowAllTicketController);
-route.get("/get-one-ticket/:id", LoginOnly, AdminOnly ,ShowOneTicketController);
+route.get("/get-one-ticket/:id", LoginOnly ,ShowOneTicketController);
 route.post("/send-ticket", LoginOnly ,SendTicketController);
 route.post("/answer-ticket/:id", LoginOnly ,AnswerTicketController);
 route.delete("/delete-ticket/:id", LoginOnly ,DeleteTicketController);
