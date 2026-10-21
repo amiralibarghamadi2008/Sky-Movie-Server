@@ -1,8 +1,8 @@
-import { FindOneUser, UpdateUser } from "../../repository/UserRepository/UserRepository.js";
+import { FindOneUserById, UpdateUser } from "../../repository/UserRepository/UserRepository.js";
 
 export default async function BannedUserService(userId , userData) {
   try {
-    const findUser = await FindOneUser(userId)
+    const findUser = await FindOneUserById(userId)
 
     if (!findUser) {
         throw new Error("همچین کاربری وجود ندارد")

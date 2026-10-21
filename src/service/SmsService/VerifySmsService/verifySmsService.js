@@ -1,18 +1,25 @@
-import { FindOtpCode } from "../../../repository/OtpRepository/otpRepository.js";
+import redis from "../../../config/redis/redis.js";
 
 export default async function VerifyOtpCodeService(userData) {
   try {
-    const { phoneNumber , otpCode } = userData
+    const { phoneNumber, otpCode } = userData;
+    const cacheKey = `otp:${phoneNumber}`;
 
-    const otpRecord = await FindOtpCode(phoneNumber)
+    const savedData = await redis.get(cacheKey);
 
-    if (!otpRecord) {
-        throw new Error("کد تایید یا منقضی شده یا وجود ندارد")
+    if (!savedData) {
+      throw new Error("کد تایید منقضی شده یا وجود ندارد");
     }
 
-    if (otpRecord.otpCode !== String(otpCode)) {
-        throw new Error("کد وارد شده اشتباه می باشد")
+    const parsedData = JSON.parse(savedData);
+
+    if (parsedData.otpCode !== String(otpCode)) {
+      throw new Error("کد وارد شده اشتباه می باشد");
     }
+
+    await redis.del(cacheKey);
+
+    return { success: true, message: "کد با موفقیت تایید شد" };
   } catch (error) {
     throw error;
   }
