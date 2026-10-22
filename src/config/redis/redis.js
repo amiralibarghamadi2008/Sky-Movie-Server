@@ -7,3 +7,5 @@ const redis = createClient({
 redis.on("error", (err) => console.error("خطای ردیس:", err));
 
 await redis.connect();
+
+export default redis;
