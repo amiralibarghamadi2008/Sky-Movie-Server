@@ -34,9 +34,9 @@ app.use(express.json())
 
 app.use(ConnectToDBMiddleware)
 
-app.use(GlobalLimiter)
-
 app.use(cookieParser())
+
+app.use(GlobalLimiter)
 
 app.use(helmet())
 
