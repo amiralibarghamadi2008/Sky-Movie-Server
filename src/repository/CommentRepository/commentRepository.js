@@ -1,9 +1,15 @@
 import CommentModel from "../../model/CommentModel/comment.js";
-import { FindAll , FindOneById , Create , Delete , Update } from "../BaseRepository/BaseRepository.js"
+import {  FindOneById , Create , Delete , Update } from "../BaseRepository/BaseRepository.js"
 
-export async function FindAllComment() {
+export async function FindAllComment(filter = {}) {
   try {
-    return await FindAll(CommentModel)
+    return await CommentModel.find(filter)
+      .sort({createdAt: -1})
+      .populate({
+        path : "user",
+        select : "firstName Avatar",
+        match : { isBanned : false }
+      })
   } catch (error) {
     throw error;
   }

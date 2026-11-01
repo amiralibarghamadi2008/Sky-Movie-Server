@@ -1,6 +1,6 @@
-export async function FindAll(model) {
+export async function FindAll(model , filter = {}) {
   try {
-    return await model.find({});
+    return await model.find(filter);
   } catch (error) {
     throw error;
   }

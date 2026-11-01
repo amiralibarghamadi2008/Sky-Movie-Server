@@ -4,13 +4,18 @@ export default async function GetOne_Movie_Controller(req, res) {
   try {
     const queryParams = req.params.slug;
 
-    const getOneMovie = await GetOne_Movie_Service({ slug: queryParams });
+    const { movie , movieComment } = await GetOne_Movie_Service({ slug: queryParams });
 
-    if (!getOneMovie) {
+    if (!movie && !movieComment) {
       return res.status(404).json("این فیلم وجود ندارد");
-    } else {
-      return res.status(200).json(getOneMovie);
-    }
+    } 
+      
+    return res.status(200).json({
+      success : true,
+      movie,
+      movieComment,
+    });
+    
   } catch (error) {
     return res.status(500).json({
       success: false,
