@@ -4,9 +4,20 @@ export default async function GetOne_Series_Controllers(req, res) {
   try {
     const queryParams = req.params.slug;
 
-    const getOneSeries = await GetOne_Series_Service(queryParams);
+    const { series, seriesComment } = await GetOne_Series_Service({
+      slug: queryParams,
+    });
 
-    return res.status(200).json(getOneSeries);
+    if (!series && !seriesComment) {
+      return res.status(404).json("این فیلم وجود ندارد");
+    }
+
+    return res.status(200).json({
+      success: true,
+      series,
+      seriesComment,
+    });
+    
   } catch (error) {
     return res.status(500).json({
       success: false,
