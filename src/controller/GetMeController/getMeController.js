@@ -3,7 +3,7 @@ import GetMeService from "../../service/GetMeService/getMeService.js";
 
 export default async function GetMeController(req, res) {
   try {
-    const userId = req.user.id;
+    const userId = req.user.userId;
 
     const isValidObjectId = mongoose.Types.ObjectId.isValid(userId);
 
