@@ -1,11 +1,15 @@
 import express from "express";
 
-// controller
+// controller movie
 import GetAll_Movie_Controller from "../../controller/MovieControllers/GetAll_Movie_Controller/getAll_Movie_Controller.js";
 import GetOne_Movie_Controller from "../../controller/MovieControllers/GetOne_Movie_Controller/getOne_Movie_Controller.js";
 import Create_Movie_Controller from "../../controller/MovieControllers/Create_Movie_Controller/create_Movie_Controller.js";
 import Delete_Movie_Controller from "../../controller/MovieControllers/Delete_Movie_Controller/delete_Movie_Controller.js";
 import Update_Movie_Controller from "../../controller/MovieControllers/Update_Movie_Controller/update_Movie_Controller.js";
+
+// controller comment
+
+import Create_Comment_Movie_Controller from "../../controller/MovieControllers/Comments_Movie_Controller/Create_Comment_Movie_Controller/create_Comment_Movie_Controller.js";
 
 // middleware's
 import LoginOnly from "../../middleware/Auth/LoginOnly/loginOnly.js";
@@ -16,11 +20,18 @@ const { ErrorHandel } = UploadImage();
 
 const route = express.Router();
 
+// route movie
+
 route.get("/movie/all", GetAll_Movie_Controller);
 route.get("/movie/:slug", GetOne_Movie_Controller);
 route.post("/movie/create", LoginOnly , AdminOnly ,Create_Movie_Controller);
 route.delete("/movie/delete-movie/:id", LoginOnly , AdminOnly ,Delete_Movie_Controller);
 route.patch("/movie/udate-movie/:id", LoginOnly , AdminOnly ,Update_Movie_Controller);
 route.post("/movie/uploader", LoginOnly , AdminOnly ,ErrorHandel);
+
+
+// route comment
+
+route.post("/movie/comment/create/:slug", LoginOnly ,Create_Comment_Movie_Controller);
 
 export default route;

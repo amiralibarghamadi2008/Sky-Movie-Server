@@ -1,5 +1,5 @@
 import CommentModel from "../../model/CommentModel/comment.js";
-import {  FindOneById , Create , Delete , Update } from "../BaseRepository/BaseRepository.js"
+import { Create , Delete , Update } from "../BaseRepository/BaseRepository.js"
 
 export async function FindAllComment(filter = {}) {
   try {
@@ -14,16 +14,6 @@ export async function FindAllComment(filter = {}) {
     throw error;
   }
 }
-
-
-export async function FindOneComment(commentId) {
-  try {
-    return await FindOneById(CommentModel , commentId)
-  } catch (error) {
-    throw error;
-  }
-}
-
 
 export async function CreateComment(commentData) {
   try {

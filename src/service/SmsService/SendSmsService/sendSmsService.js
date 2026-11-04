@@ -23,6 +23,9 @@ export default async function SendSmsService(userData) {
 
     const Send = await SendOtpCode(phoneNumber, generatOtpCode);
 
+    console.log(Send);
+    
+
     if (Send) {
       await redis.set(cacheKey, JSON.stringify(Send), {
         EX: 120,
